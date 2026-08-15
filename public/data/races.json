@@ -1,0 +1,3022 @@
+{
+  "meta": {
+    "cycle": 2026,
+    "electionDay": "2026-11-03",
+    "verifiedThrough": "2026-05",
+    "generatedAt": "2026-08-15",
+    "identitySource": "unitedstates/congress-legislators (CC0)",
+    "rosterSource": "hand-authored from public reporting; see scripts/lib/roster.mjs",
+    "warning": "Candidate fields are verified through 2026-05. Primaries held after that date are not reflected — a multi-candidate field of one party may already have resolved to a nominee.",
+    "races": 35,
+    "candidates": 72,
+    "candidatesResolvedToRecord": 45,
+    "holdover": {
+      "D": 32,
+      "R": 31,
+      "I": 2
+    },
+    "chamberSize": 100,
+    "rosterDrift": []
+  },
+  "races": [
+    {
+      "id": "ME",
+      "state": "ME",
+      "stateFips": "23",
+      "stateName": "Maine",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Susan M. Collins",
+        "bioguide": "C001035",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 30,
+        "birthday": "1952-12-07"
+      },
+      "candidates": [
+        {
+          "id": "ME-susan-m-collins",
+          "name": "Susan M. Collins",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001035",
+            "fecIds": [
+              "S6ME00159"
+            ],
+            "fullName": "Susan M. Collins",
+            "birthday": "1952-12-07",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "ME",
+                "start": "1997-01-07",
+                "end": "2027-01-03",
+                "terms": 5
+              }
+            ],
+            "yearsInCongress": 30,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "ME",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "ME-janet-mills",
+          "name": "Janet Mills",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Governor of Maine; former Maine Attorney General",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "ME-graham-platner",
+          "name": "Graham Platner",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": "Oyster farmer; Marine and Army veteran",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "ME-jordan-wood",
+          "name": "Jordan Wood",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": "Former congressional chief of staff",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "TX",
+      "state": "TX",
+      "stateFips": "48",
+      "stateName": "Texas",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": "The marquee primary of the cycle: an incumbent facing the state attorney general and a sitting congressman.",
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "John Cornyn",
+        "bioguide": "C001056",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 24,
+        "birthday": "1952-02-02"
+      },
+      "candidates": [
+        {
+          "id": "TX-john-cornyn",
+          "name": "John Cornyn",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001056",
+            "fecIds": [
+              "S2TX00106"
+            ],
+            "fullName": "John Cornyn",
+            "birthday": "1952-02-02",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "TX",
+                "start": "2002-11-30",
+                "end": "2027-01-03",
+                "terms": 5
+              }
+            ],
+            "yearsInCongress": 24,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "TX",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "TX-ken-paxton",
+          "name": "Ken Paxton",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Attorney General of Texas",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "TX-wesley-hunt",
+          "name": "Wesley Hunt",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H001095",
+            "fecIds": [
+              "H0TX07170"
+            ],
+            "fullName": "Wesley Hunt",
+            "birthday": "1981-11-13",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "TX-38",
+                "start": "2023-01-03",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 4,
+            "chamber": "rep",
+            "district": 38,
+            "recordState": "TX",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "TX-colin-allred",
+          "name": "Colin Allred",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": null,
+          "note": "Lost the 2024 Senate race to Ted Cruz by 8.5 points; running again.",
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "A000376",
+            "fecIds": [
+              "H8TX32098"
+            ],
+            "fullName": "Colin Z. Allred",
+            "birthday": "1983-04-15",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "TX-32",
+                "start": "2019-01-03",
+                "end": "2025-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "rep",
+            "district": 32,
+            "recordState": "TX",
+            "sittingMember": false
+          },
+          "finance": null
+        },
+        {
+          "id": "TX-james-talarico",
+          "name": "James Talarico",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 3,
+          "office": "Texas State Representative",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "IL",
+      "state": "IL",
+      "stateFips": "17",
+      "stateName": "Illinois",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Durbin is retiring after five terms.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Richard J. Durbin",
+        "bioguide": "D000563",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 44,
+        "birthday": "1944-11-21"
+      },
+      "candidates": [
+        {
+          "id": "IL-juliana-stratton",
+          "name": "Juliana Stratton",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Lieutenant Governor of Illinois",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "IL-raja-krishnamoorthi",
+          "name": "Raja Krishnamoorthi",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "K000391",
+            "fecIds": [
+              "H6IL08147"
+            ],
+            "fullName": "Raja Krishnamoorthi",
+            "birthday": "1973-07-19",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "IL-08",
+                "start": "2017-01-03",
+                "end": "2027-01-03",
+                "terms": 5
+              }
+            ],
+            "yearsInCongress": 10,
+            "chamber": "rep",
+            "district": 8,
+            "recordState": "IL",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "IL-robin-kelly",
+          "name": "Robin Kelly",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "K000385",
+            "fecIds": [
+              "H2IL02172"
+            ],
+            "fullName": "Robin L. Kelly",
+            "birthday": "1956-04-30",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "IL-02",
+                "start": "2013-04-09",
+                "end": "2027-01-03",
+                "terms": 7
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "rep",
+            "district": 2,
+            "recordState": "IL",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "KY",
+      "state": "KY",
+      "stateFips": "21",
+      "stateName": "Kentucky",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "McConnell is retiring after seven terms and a record run as party leader.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Mitch McConnell",
+        "bioguide": "M000355",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 42,
+        "birthday": "1942-02-20"
+      },
+      "candidates": [
+        {
+          "id": "KY-nate-morris",
+          "name": "Nate Morris",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": "Founder, waste and recycling company",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "KY-andy-barr",
+          "name": "Andy Barr",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "B001282",
+            "fecIds": [
+              "H0KY06104"
+            ],
+            "fullName": "Andy Barr",
+            "birthday": "1973-07-24",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "KY-06",
+                "start": "2013-01-03",
+                "end": "2027-01-03",
+                "terms": 7
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "rep",
+            "district": 6,
+            "recordState": "KY",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "KY-pamela-stevenson",
+          "name": "Pamela Stevenson",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": "Kentucky State Representative",
+          "occupation": "Retired Air Force colonel; attorney",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "OR",
+      "state": "OR",
+      "stateFips": "41",
+      "stateName": "Oregon",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Jeff Merkley",
+        "bioguide": "M001176",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 18,
+        "birthday": "1956-10-24"
+      },
+      "candidates": [
+        {
+          "id": "OR-jeff-merkley",
+          "name": "Jeff Merkley",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M001176",
+            "fecIds": [
+              "S8OR00207"
+            ],
+            "fullName": "Jeff Merkley",
+            "birthday": "1956-10-24",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "OR",
+                "start": "2009-01-06",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 18,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "OR",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "RI",
+      "state": "RI",
+      "stateFips": "44",
+      "stateName": "Rhode Island",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Jack Reed",
+        "bioguide": "R000122",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 36,
+        "birthday": "1949-11-12"
+      },
+      "candidates": [
+        {
+          "id": "RI-jack-reed",
+          "name": "Jack Reed",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "R000122",
+            "fecIds": [
+              "S6RI00163",
+              "H0RI02071"
+            ],
+            "fullName": "Jack Reed",
+            "birthday": "1949-11-12",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "RI-02",
+                "start": "1991-01-03",
+                "end": "1997-01-03",
+                "terms": 3
+              },
+              {
+                "label": "US Senator",
+                "seat": "RI",
+                "start": "1997-01-07",
+                "end": "2027-01-03",
+                "terms": 5
+              }
+            ],
+            "yearsInCongress": 36,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "RI",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "ID",
+      "state": "ID",
+      "stateFips": "16",
+      "stateName": "Idaho",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "James E. Risch",
+        "bioguide": "R000584",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 18,
+        "birthday": "1943-05-03"
+      },
+      "candidates": [
+        {
+          "id": "ID-james-e-risch",
+          "name": "James E. Risch",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "R000584",
+            "fecIds": [
+              "S8ID00092"
+            ],
+            "fullName": "James E. Risch",
+            "birthday": "1943-05-03",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "ID",
+                "start": "2009-01-06",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 18,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "ID",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "NH",
+      "state": "NH",
+      "stateFips": "33",
+      "stateName": "New Hampshire",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Shaheen is retiring after three terms.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Jeanne Shaheen",
+        "bioguide": "S001181",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 18,
+        "birthday": "1947-01-28"
+      },
+      "candidates": [
+        {
+          "id": "NH-chris-pappas",
+          "name": "Chris Pappas",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "P000614",
+            "fecIds": [
+              "H8NH01210"
+            ],
+            "fullName": "Chris Pappas",
+            "birthday": "1980-06-04",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "NH-01",
+                "start": "2019-01-03",
+                "end": "2027-01-03",
+                "terms": 4
+              }
+            ],
+            "yearsInCongress": 8,
+            "chamber": "rep",
+            "district": 1,
+            "recordState": "NH",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "NH-scott-brown",
+          "name": "Scott Brown",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": "US Senator for Massachusetts (2010-2013); US Ambassador to New Zealand",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "B001268",
+            "fecIds": [
+              "S0MA00109"
+            ],
+            "fullName": "Scott P. Brown",
+            "birthday": "1959-09-12",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "MA",
+                "start": "2010-02-04",
+                "end": "2013-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 3,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "MA",
+            "sittingMember": false
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "VA",
+      "state": "VA",
+      "stateFips": "51",
+      "stateName": "Virginia",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Mark R. Warner",
+        "bioguide": "W000805",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 18,
+        "birthday": "1954-12-15"
+      },
+      "candidates": [
+        {
+          "id": "VA-mark-r-warner",
+          "name": "Mark R. Warner",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "W000805",
+            "fecIds": [
+              "S6VA00093",
+              "P80003023"
+            ],
+            "fullName": "Mark R. Warner",
+            "birthday": "1954-12-15",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "VA",
+                "start": "2009-01-06",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 18,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "VA",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "DE",
+      "state": "DE",
+      "stateFips": "10",
+      "stateName": "Delaware",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Christopher A. Coons",
+        "bioguide": "C001088",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 16,
+        "birthday": "1963-09-09"
+      },
+      "candidates": [
+        {
+          "id": "DE-christopher-a-coons",
+          "name": "Christopher A. Coons",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001088",
+            "fecIds": [
+              "S0DE00092"
+            ],
+            "fullName": "Christopher A. Coons",
+            "birthday": "1963-09-09",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "DE",
+                "start": "2010-11-15",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 16,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "DE",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "WV",
+      "state": "WV",
+      "stateFips": "54",
+      "stateName": "West Virginia",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Shelley Moore Capito",
+        "bioguide": "C001047",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 26,
+        "birthday": "1953-11-26"
+      },
+      "candidates": [
+        {
+          "id": "WV-shelley-moore-capito",
+          "name": "Shelley Moore Capito",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001047",
+            "fecIds": [
+              "H0WV02138",
+              "S4WV00159"
+            ],
+            "fullName": "Shelley Moore Capito",
+            "birthday": "1953-11-26",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "WV-02",
+                "start": "2001-01-03",
+                "end": "2015-01-03",
+                "terms": 7
+              },
+              {
+                "label": "US Senator",
+                "seat": "WV",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 26,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "WV",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "LA",
+      "state": "LA",
+      "stateFips": "22",
+      "stateName": "Louisiana",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": "Louisiana replaced its all-party primary with closed party primaries for 2026, sharpening the challenge to Cassidy from his right.",
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Bill Cassidy",
+        "bioguide": "C001075",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 18,
+        "birthday": "1957-09-28"
+      },
+      "candidates": [
+        {
+          "id": "LA-bill-cassidy",
+          "name": "Bill Cassidy",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001075",
+            "fecIds": [
+              "H8LA00017",
+              "S4LA00107"
+            ],
+            "fullName": "Bill Cassidy",
+            "birthday": "1957-09-28",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "LA-06",
+                "start": "2009-01-06",
+                "end": "2015-01-03",
+                "terms": 3
+              },
+              {
+                "label": "US Senator",
+                "seat": "LA",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 18,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "LA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "LA-john-fleming",
+          "name": "John Fleming",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Louisiana State Treasurer",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "F000456",
+            "fecIds": [
+              "H8LA04225"
+            ],
+            "fullName": "John Fleming",
+            "birthday": "1951-07-05",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "LA-04",
+                "start": "2009-01-06",
+                "end": "2017-01-03",
+                "terms": 4
+              }
+            ],
+            "yearsInCongress": 8,
+            "chamber": "rep",
+            "district": 4,
+            "recordState": "LA",
+            "sittingMember": false
+          },
+          "finance": null
+        },
+        {
+          "id": "LA-blake-miguez",
+          "name": "Blake Miguez",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": "Louisiana State Senator",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "NM",
+      "state": "NM",
+      "stateFips": "35",
+      "stateName": "New Mexico",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Ben Ray Luján",
+        "bioguide": "L000570",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 18,
+        "birthday": "1972-06-07"
+      },
+      "candidates": [
+        {
+          "id": "NM-ben-ray-lujan",
+          "name": "Ben Ray Luján",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "L000570",
+            "fecIds": [
+              "H8NM03196",
+              "S0NM00058"
+            ],
+            "fullName": "Ben Ray Luján",
+            "birthday": "1972-06-07",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "NM-03",
+                "start": "2009-01-06",
+                "end": "2021-01-03",
+                "terms": 6
+              },
+              {
+                "label": "US Senator",
+                "seat": "NM",
+                "start": "2021-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 18,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "NM",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "MA",
+      "state": "MA",
+      "stateFips": "25",
+      "stateName": "Massachusetts",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Edward J. Markey",
+        "bioguide": "M000133",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 52,
+        "birthday": "1946-07-11"
+      },
+      "candidates": [
+        {
+          "id": "MA-edward-j-markey",
+          "name": "Edward J. Markey",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M000133",
+            "fecIds": [
+              "H6MA07101",
+              "S4MA00028"
+            ],
+            "fullName": "Edward J. Markey",
+            "birthday": "1946-07-11",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MA-07",
+                "start": "1975-01-14",
+                "end": "2013-01-03",
+                "terms": 19
+              },
+              {
+                "label": "US Representative",
+                "seat": "MA-05",
+                "start": "2013-01-03",
+                "end": "2013-07-15",
+                "terms": 1
+              },
+              {
+                "label": "US Senator",
+                "seat": "MA",
+                "start": "2013-07-16",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 52,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "MA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "MA-seth-moulton",
+          "name": "Seth Moulton",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M001196",
+            "fecIds": [
+              "H4MA06090"
+            ],
+            "fullName": "Seth Moulton",
+            "birthday": "1978-10-24",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MA-06",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 6
+              }
+            ],
+            "yearsInCongress": 12,
+            "chamber": "rep",
+            "district": 6,
+            "recordState": "MA",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "MI",
+      "state": "MI",
+      "stateFips": "26",
+      "stateName": "Michigan",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Peters is retiring after two terms.",
+      "specialReason": null,
+      "note": "Rogers lost the 2024 Senate race here by roughly 19,000 votes and is running again.",
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Gary C. Peters",
+        "bioguide": "P000595",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 18,
+        "birthday": "1958-12-01"
+      },
+      "candidates": [
+        {
+          "id": "MI-mallory-mcmorrow",
+          "name": "Mallory McMorrow",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Michigan State Senator",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "MI-abdul-elsayed",
+          "name": "Abdul El-Sayed",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": "Former Executive Director, Detroit Health Department",
+          "occupation": "Physician and epidemiologist",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "MI-haley-stevens",
+          "name": "Haley Stevens",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "S001215",
+            "fecIds": [
+              "H8MI11254"
+            ],
+            "fullName": "Haley M. Stevens",
+            "birthday": "1983-06-24",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MI-11",
+                "start": "2019-01-03",
+                "end": "2027-01-03",
+                "terms": 4
+              }
+            ],
+            "yearsInCongress": 8,
+            "chamber": "rep",
+            "district": 11,
+            "recordState": "MI",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "MI-mike-rogers",
+          "name": "Mike Rogers",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 3,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "R000572",
+            "fecIds": [
+              "H0MI08042"
+            ],
+            "fullName": "Mike Rogers",
+            "birthday": "1963-06-02",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MI-08",
+                "start": "2001-01-03",
+                "end": "2015-01-03",
+                "terms": 7
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "rep",
+            "district": 8,
+            "recordState": "MI",
+            "sittingMember": false
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "AR",
+      "state": "AR",
+      "stateFips": "05",
+      "stateName": "Arkansas",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Tom Cotton",
+        "bioguide": "C001095",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 14,
+        "birthday": "1977-05-13"
+      },
+      "candidates": [
+        {
+          "id": "AR-tom-cotton",
+          "name": "Tom Cotton",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001095",
+            "fecIds": [
+              "H2AR04083",
+              "S4AR00103"
+            ],
+            "fullName": "Tom Cotton",
+            "birthday": "1977-05-13",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "AR-04",
+                "start": "2013-01-03",
+                "end": "2015-01-03",
+                "terms": 1
+              },
+              {
+                "label": "US Senator",
+                "seat": "AR",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "AR",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "MT",
+      "state": "MT",
+      "stateFips": "30",
+      "stateName": "Montana",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Steve Daines",
+        "bioguide": "D000618",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 14,
+        "birthday": "1962-08-20"
+      },
+      "candidates": [
+        {
+          "id": "MT-steve-daines",
+          "name": "Steve Daines",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "D000618",
+            "fecIds": [
+              "H2MT01060",
+              "S2MT00096"
+            ],
+            "fullName": "Steve Daines",
+            "birthday": "1962-08-20",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MT-00",
+                "start": "2013-01-03",
+                "end": "2015-01-03",
+                "terms": 1
+              },
+              {
+                "label": "US Senator",
+                "seat": "MT",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "MT",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "NJ",
+      "state": "NJ",
+      "stateFips": "34",
+      "stateName": "New Jersey",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Cory A. Booker",
+        "bioguide": "B001288",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 13,
+        "birthday": "1969-04-27"
+      },
+      "candidates": [
+        {
+          "id": "NJ-cory-a-booker",
+          "name": "Cory A. Booker",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "B001288",
+            "fecIds": [
+              "S4NJ00185"
+            ],
+            "fullName": "Cory A. Booker",
+            "birthday": "1969-04-27",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "NJ",
+                "start": "2013-10-31",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 13,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "NJ",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "AK",
+      "state": "AK",
+      "stateFips": "02",
+      "stateName": "Alaska",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Dan Sullivan",
+        "bioguide": "S001198",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 12,
+        "birthday": "1964-11-13"
+      },
+      "candidates": [
+        {
+          "id": "AK-dan-sullivan",
+          "name": "Dan Sullivan",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "S001198",
+            "fecIds": [
+              "S4AK00214"
+            ],
+            "fullName": "Dan Sullivan",
+            "birthday": "1964-11-13",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "AK",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 12,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "AK",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "AK-mary-peltola",
+          "name": "Mary Peltola",
+          "party": "D",
+          "status": "potential",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": "Reported as weighing a Senate bid after her 2024 House loss; not confirmed as of the verification date.",
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "P000619",
+            "fecIds": [
+              "H2AK01158"
+            ],
+            "fullName": "Mary Sattler Peltola",
+            "birthday": "1973-08-31",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "AK-00",
+                "start": "2022-09-13",
+                "end": "2025-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 2,
+            "chamber": "rep",
+            "district": 0,
+            "recordState": "AK",
+            "sittingMember": false
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "IA",
+      "state": "IA",
+      "stateFips": "19",
+      "stateName": "Iowa",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Ernst announced she would not seek a third term.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Joni Ernst",
+        "bioguide": "E000295",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 12,
+        "birthday": "1970-07-01"
+      },
+      "candidates": [
+        {
+          "id": "IA-ashley-hinson",
+          "name": "Ashley Hinson",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H001091",
+            "fecIds": [
+              "H0IA01174"
+            ],
+            "fullName": "Ashley Hinson",
+            "birthday": "1983-06-27",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "IA-01",
+                "start": "2021-01-03",
+                "end": "2023-01-03",
+                "terms": 1
+              },
+              {
+                "label": "US Representative",
+                "seat": "IA-02",
+                "start": "2023-01-03",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "rep",
+            "district": 2,
+            "recordState": "IA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "IA-zach-wahls",
+          "name": "Zach Wahls",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": "Iowa State Senator",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "IA-josh-turek",
+          "name": "Josh Turek",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": "Iowa State Representative",
+          "occupation": "Paralympic gold medalist",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "IA-nathan-sage",
+          "name": "Nathan Sage",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 3,
+          "office": null,
+          "occupation": "Marine veteran; chamber of commerce director",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "IA-jackie-norris",
+          "name": "Jackie Norris",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 4,
+          "office": null,
+          "occupation": "Nonprofit executive; former Obama aide",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "NC",
+      "state": "NC",
+      "stateFips": "37",
+      "stateName": "North Carolina",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Tillis announced he would not seek a third term after breaking with the president over the 2025 tax-and-spending bill.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Thom Tillis",
+        "bioguide": "T000476",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 12,
+        "birthday": "1960-08-30"
+      },
+      "candidates": [
+        {
+          "id": "NC-roy-cooper",
+          "name": "Roy Cooper",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Governor of North Carolina (2017-2025); NC Attorney General (2001-2017)",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "NC-michael-whatley",
+          "name": "Michael Whatley",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": "Chair, Republican National Committee; former NC GOP chair",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "SD",
+      "state": "SD",
+      "stateFips": "46",
+      "stateName": "South Dakota",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Mike Rounds",
+        "bioguide": "R000605",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 12,
+        "birthday": "1954-10-24"
+      },
+      "candidates": [
+        {
+          "id": "SD-mike-rounds",
+          "name": "Mike Rounds",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "R000605",
+            "fecIds": [
+              "S4SD00049"
+            ],
+            "fullName": "Mike Rounds",
+            "birthday": "1954-10-24",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "SD",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 12,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "SD",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "KS",
+      "state": "KS",
+      "stateFips": "20",
+      "stateName": "Kansas",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Roger Marshall",
+        "bioguide": "M001198",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 10,
+        "birthday": "1960-08-09"
+      },
+      "candidates": [
+        {
+          "id": "KS-roger-marshall",
+          "name": "Roger Marshall",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M001198",
+            "fecIds": [
+              "H6KS01179",
+              "S0KS00315"
+            ],
+            "fullName": "Roger Marshall",
+            "birthday": "1960-08-09",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "KS-01",
+                "start": "2017-01-03",
+                "end": "2021-01-03",
+                "terms": 2
+              },
+              {
+                "label": "US Senator",
+                "seat": "KS",
+                "start": "2021-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 10,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "KS",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "MN",
+      "state": "MN",
+      "stateFips": "27",
+      "stateName": "Minnesota",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Smith is retiring after filling and then winning the seat.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Tina Smith",
+        "bioguide": "S001203",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 9,
+        "birthday": "1958-03-04"
+      },
+      "candidates": [
+        {
+          "id": "MN-peggy-flanagan",
+          "name": "Peggy Flanagan",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Lieutenant Governor of Minnesota",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "MN-angie-craig",
+          "name": "Angie Craig",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001119",
+            "fecIds": [
+              "H6MN02131"
+            ],
+            "fullName": "Angie Craig",
+            "birthday": "1972-02-14",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "MN-02",
+                "start": "2019-01-03",
+                "end": "2027-01-03",
+                "terms": 4
+              }
+            ],
+            "yearsInCongress": 8,
+            "chamber": "rep",
+            "district": 2,
+            "recordState": "MN",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "MN-royce-white",
+          "name": "Royce White",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": "Former professional basketball player",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "MS",
+      "state": "MS",
+      "stateFips": "28",
+      "stateName": "Mississippi",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Cindy Hyde-Smith",
+        "bioguide": "H001079",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 9,
+        "birthday": "1959-05-10"
+      },
+      "candidates": [
+        {
+          "id": "MS-cindy-hydesmith",
+          "name": "Cindy Hyde-Smith",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H001079",
+            "fecIds": [
+              "S8MS00261"
+            ],
+            "fullName": "Cindy Hyde-Smith",
+            "birthday": "1959-05-10",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "MS",
+                "start": "2018-04-09",
+                "end": "2027-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 9,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "MS",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "MS-ty-pinkins",
+          "name": "Ty Pinkins",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": "Army veteran; attorney",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "WY",
+      "state": "WY",
+      "stateFips": "56",
+      "stateName": "Wyoming",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Cynthia M. Lummis",
+        "bioguide": "L000571",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 14,
+        "birthday": "1954-09-10"
+      },
+      "candidates": [
+        {
+          "id": "WY-cynthia-m-lummis",
+          "name": "Cynthia M. Lummis",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "L000571",
+            "fecIds": [
+              "H8WY00148",
+              "S0WY00137"
+            ],
+            "fullName": "Cynthia M. Lummis",
+            "birthday": "1954-09-10",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "WY-00",
+                "start": "2009-01-06",
+                "end": "2017-01-03",
+                "terms": 4
+              },
+              {
+                "label": "US Senator",
+                "seat": "WY",
+                "start": "2021-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 14,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "WY",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "AL",
+      "state": "AL",
+      "stateFips": "01",
+      "stateName": "Alabama",
+      "seatClass": 2,
+      "special": false,
+      "open": true,
+      "openReason": "Tuberville is running for Governor rather than re-election.",
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Tommy Tuberville",
+        "bioguide": "T000278",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": true,
+        "yearsInCongress": 6,
+        "birthday": "1954-09-18"
+      },
+      "candidates": [
+        {
+          "id": "AL-steve-marshall",
+          "name": "Steve Marshall",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Attorney General of Alabama",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "AL-barry-moore",
+          "name": "Barry Moore",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M001212",
+            "fecIds": [
+              "H8AL02171"
+            ],
+            "fullName": "Barry Moore",
+            "birthday": "1966-09-26",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "AL-02",
+                "start": "2021-01-03",
+                "end": "2025-01-03",
+                "terms": 2
+              },
+              {
+                "label": "US Representative",
+                "seat": "AL-01",
+                "start": "2025-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "rep",
+            "district": 1,
+            "recordState": "AL",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "AL-jared-hudson",
+          "name": "Jared Hudson",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": "Former Navy SEAL; nonprofit founder",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "CO",
+      "state": "CO",
+      "stateFips": "08",
+      "stateName": "Colorado",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "John W. Hickenlooper",
+        "bioguide": "H000273",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 6,
+        "birthday": "1952-02-07"
+      },
+      "candidates": [
+        {
+          "id": "CO-john-w-hickenlooper",
+          "name": "John W. Hickenlooper",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H000273",
+            "fecIds": [
+              "S0CO00575"
+            ],
+            "fullName": "John W. Hickenlooper",
+            "birthday": "1952-02-07",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "CO",
+                "start": "2021-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "CO",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "TN",
+      "state": "TN",
+      "stateFips": "47",
+      "stateName": "Tennessee",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Bill Hagerty",
+        "bioguide": "H000601",
+        "party": "R",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 6,
+        "birthday": "1959-08-14"
+      },
+      "candidates": [
+        {
+          "id": "TN-bill-hagerty",
+          "name": "Bill Hagerty",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H000601",
+            "fecIds": [
+              "S0TN00169"
+            ],
+            "fullName": "Bill Hagerty",
+            "birthday": "1959-08-14",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "TN",
+                "start": "2021-01-03",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "TN",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "GA",
+      "state": "GA",
+      "stateFips": "13",
+      "stateName": "Georgia",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": "Governor Brian Kemp declined to run, leaving an unsettled Republican field.",
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Jon Ossoff",
+        "bioguide": "O000174",
+        "party": "D",
+        "appointed": false,
+        "how": "election",
+        "retiring": false,
+        "yearsInCongress": 6,
+        "birthday": "1987-02-16"
+      },
+      "candidates": [
+        {
+          "id": "GA-jon-ossoff",
+          "name": "Jon Ossoff",
+          "party": "D",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "O000174",
+            "fecIds": [
+              "H8GA06195",
+              "S8GA00180"
+            ],
+            "fullName": "Jon Ossoff",
+            "birthday": "1987-02-16",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "GA",
+                "start": "2021-01-20",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 6,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "GA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "GA-buddy-carter",
+          "name": "Buddy Carter",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001103",
+            "fecIds": [
+              "H4GA01039"
+            ],
+            "fullName": "Earl L. \"Buddy\" Carter",
+            "birthday": "1957-09-06",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "GA-01",
+                "start": "2015-01-06",
+                "end": "2027-01-03",
+                "terms": 6
+              }
+            ],
+            "yearsInCongress": 12,
+            "chamber": "rep",
+            "district": 1,
+            "recordState": "GA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "GA-mike-collins",
+          "name": "Mike Collins",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "C001129",
+            "fecIds": [
+              "H4GA10071"
+            ],
+            "fullName": "Mike Collins",
+            "birthday": "1967-07-02",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "GA-10",
+                "start": "2023-01-03",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 4,
+            "chamber": "rep",
+            "district": 10,
+            "recordState": "GA",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "GA-derek-dooley",
+          "name": "Derek Dooley",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 2,
+          "office": null,
+          "occupation": "Former college football head coach",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "NE",
+      "state": "NE",
+      "stateFips": "31",
+      "stateName": "Nebraska",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Pete Ricketts",
+        "bioguide": "R000618",
+        "party": "R",
+        "appointed": false,
+        "how": "special-election",
+        "retiring": false,
+        "yearsInCongress": 4,
+        "birthday": "1964-08-19"
+      },
+      "candidates": [
+        {
+          "id": "NE-pete-ricketts",
+          "name": "Pete Ricketts",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "R000618",
+            "fecIds": [
+              "S6NE00129"
+            ],
+            "fullName": "Pete Ricketts",
+            "birthday": "1964-08-19",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "NE",
+                "start": "2023-01-23",
+                "end": "2027-01-03",
+                "terms": 2
+              }
+            ],
+            "yearsInCongress": 4,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "NE",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "NE-dan-osborn",
+          "name": "Dan Osborn",
+          "party": "I",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": "Industrial mechanic; former union president",
+          "note": "Held Deb Fischer to a 6.7-point win as an independent in 2024, the closest Nebraska Senate race in decades.",
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "OH-special",
+      "state": "OH",
+      "stateFips": "39",
+      "stateName": "Ohio",
+      "seatClass": 3,
+      "special": true,
+      "open": false,
+      "openReason": null,
+      "specialReason": "JD Vance resigned on becoming Vice President; Jon Husted was appointed and must face voters for the remainder of the term.",
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Jon Husted",
+        "bioguide": "H001104",
+        "party": "R",
+        "appointed": true,
+        "how": "appointment",
+        "retiring": false,
+        "yearsInCongress": 2,
+        "birthday": "1967-08-25"
+      },
+      "candidates": [
+        {
+          "id": "OH-jon-husted",
+          "name": "Jon Husted",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": "Appointed to fill a vacancy; facing voters for the first time in this seat.",
+          "appointed": true,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "H001104",
+            "fecIds": [
+              "S6OH00304"
+            ],
+            "fullName": "Jon Husted",
+            "birthday": "1967-08-25",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "OH",
+                "start": "2025-01-21",
+                "end": "2026-11-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 2,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "OH",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "OH-sherrod-brown",
+          "name": "Sherrod Brown",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": null,
+          "note": "Held this class of seat for three terms before losing in 2024; running for the seat he did not lose.",
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "B000944",
+            "fecIds": [
+              "H2OH13033",
+              "S6OH00163"
+            ],
+            "fullName": "Sherrod Brown",
+            "birthday": "1952-11-09",
+            "history": [
+              {
+                "label": "US Representative",
+                "seat": "OH-13",
+                "start": "1993-01-05",
+                "end": "2007-01-03",
+                "terms": 7
+              },
+              {
+                "label": "US Senator",
+                "seat": "OH",
+                "start": "2007-01-04",
+                "end": "2025-01-03",
+                "terms": 3
+              }
+            ],
+            "yearsInCongress": 32,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "OH",
+            "sittingMember": false
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "FL-special",
+      "state": "FL",
+      "stateFips": "12",
+      "stateName": "Florida",
+      "seatClass": 3,
+      "special": true,
+      "open": false,
+      "openReason": null,
+      "specialReason": "Marco Rubio resigned to become Secretary of State; Ashley Moody was appointed and must face voters for the term's remainder.",
+      "note": null,
+      "fieldUnverified": null,
+      "seatHolder": {
+        "name": "Ashley Moody",
+        "bioguide": "M001244",
+        "party": "R",
+        "appointed": true,
+        "how": "appointment",
+        "retiring": false,
+        "yearsInCongress": 2,
+        "birthday": "1975-03-28"
+      },
+      "candidates": [
+        {
+          "id": "FL-ashley-moody",
+          "name": "Ashley Moody",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": "Appointed to fill a vacancy; facing voters for the first time in this seat.",
+          "appointed": true,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "M001244",
+            "fecIds": [
+              "S6FL00640"
+            ],
+            "fullName": "Ashley Moody",
+            "birthday": "1975-03-28",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "FL",
+                "start": "2025-01-21",
+                "end": "2026-11-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 2,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "FL",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "FL-josh-weil",
+          "name": "Josh Weil",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": null,
+          "occupation": "Public school teacher",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "OK",
+      "state": "OK",
+      "stateFips": "40",
+      "stateName": "Oklahoma",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": "This seat changed hands after the verification date — it is now held by an appointee. No challenger field has been verified; the incumbent shown is read from the congressional record.",
+      "seatHolder": {
+        "name": "Alan Armstrong",
+        "bioguide": "A000383",
+        "party": "R",
+        "appointed": true,
+        "how": "appointment",
+        "retiring": false,
+        "yearsInCongress": 1,
+        "birthday": "1962-07-11"
+      },
+      "candidates": [
+        {
+          "id": "OK-alan-armstrong",
+          "name": "Alan Armstrong",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": "Appointed to fill a vacancy; facing voters for the first time in this seat.",
+          "appointed": true,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "A000383",
+            "fecIds": [],
+            "fullName": "Alan Armstrong",
+            "birthday": "1962-07-11",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "OK",
+                "start": "2026-03-24",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 1,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "OK",
+            "sittingMember": true
+          },
+          "finance": null
+        }
+      ]
+    },
+    {
+      "id": "SC",
+      "state": "SC",
+      "stateFips": "45",
+      "stateName": "South Carolina",
+      "seatClass": 2,
+      "special": false,
+      "open": false,
+      "openReason": null,
+      "specialReason": null,
+      "note": null,
+      "fieldUnverified": "This seat changed hands after the verification date — it is now held by an appointee. The challengers below were declared before that change and may no longer be running.",
+      "seatHolder": {
+        "name": "Darline Graham",
+        "bioguide": "G000608",
+        "party": "R",
+        "appointed": true,
+        "how": "appointment",
+        "retiring": false,
+        "yearsInCongress": 0,
+        "birthday": "1964-06-12"
+      },
+      "candidates": [
+        {
+          "id": "SC-darline-graham",
+          "name": "Darline Graham",
+          "party": "R",
+          "status": "incumbent",
+          "seatOrder": -1,
+          "office": null,
+          "occupation": null,
+          "note": "Appointed to fill a vacancy; facing voters for the first time in this seat.",
+          "appointed": true,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": {
+            "bioguide": "G000608",
+            "fecIds": [],
+            "fullName": "Darline Graham",
+            "birthday": "1964-06-12",
+            "history": [
+              {
+                "label": "US Senator",
+                "seat": "SC",
+                "start": "2026-07-14",
+                "end": "2027-01-03",
+                "terms": 1
+              }
+            ],
+            "yearsInCongress": 0,
+            "chamber": "sen",
+            "district": null,
+            "recordState": "SC",
+            "sittingMember": true
+          },
+          "finance": null
+        },
+        {
+          "id": "SC-andre-bauer",
+          "name": "Andre Bauer",
+          "party": "R",
+          "status": "declared",
+          "seatOrder": 0,
+          "office": "Lieutenant Governor of South Carolina (2003-2011)",
+          "occupation": null,
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        },
+        {
+          "id": "SC-annie-andrews",
+          "name": "Annie Andrews",
+          "party": "D",
+          "status": "declared",
+          "seatOrder": 1,
+          "office": null,
+          "occupation": "Pediatrician",
+          "note": null,
+          "appointed": false,
+          "birthYear": null,
+          "birthYearConfidence": null,
+          "record": null,
+          "finance": null
+        }
+      ]
+    }
+  ]
+}

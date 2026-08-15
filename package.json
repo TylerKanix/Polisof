@@ -1,0 +1,45 @@
+{
+  "name": "polisof",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Polisof — a US Senate election intelligence terminal.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false",
+    "data": "node scripts/build-data.mjs",
+    "data:geo": "node scripts/ingest/geo.mjs",
+    "data:elections": "node scripts/ingest/elections.mjs",
+    "data:census": "node scripts/ingest/census.mjs",
+    "data:places": "node scripts/ingest/places.mjs",
+    "data:photos": "node scripts/ingest/photos.mjs",
+    "sync": "node scripts/sync.mjs",
+    "sync:fec": "node scripts/sync.mjs fec",
+    "sync:census": "node scripts/sync.mjs census",
+    "sync:kalshi": "node scripts/sync.mjs kalshi",
+    "sync:ads": "node scripts/sync.mjs ads"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "topojson-client": "^3.1.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/topojson-client": "^3.1.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "us-atlas": "^3.0.1",
+    "vite": "^5.4.11",
+    "yaml": "^2.9.0"
+  }
+}

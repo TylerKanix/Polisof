@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-08-15T02:35:52.780Z",
+  "buildMs": 18743,
+  "steps": {
+    "geo": {
+      "ok": true,
+      "states": 51,
+      "counties": 3142,
+      "ms": 225
+    },
+    "elections": {
+      "ok": true,
+      "counties": 3112,
+      "ms": 72
+    },
+    "census": {
+      "ok": true,
+      "counties": 3220,
+      "ms": 480
+    },
+    "places": {
+      "ok": true,
+      "places": 29781,
+      "ms": 248
+    },
+    "candidates": {
+      "ok": true,
+      "races": 35,
+      "resolved": 45,
+      "total": 72,
+      "drift": 0,
+      "ms": 9768
+    },
+    "photos": {
+      "ok": true,
+      "fetched": 50,
+      "cached": 0,
+      "missing": 3,
+      "ms": 7950
+    }
+  },
+  "sources": [
+    {
+      "id": "geometry",
+      "label": "State & county boundaries",
+      "source": "US Census Bureau cartographic boundaries via us-atlas",
+      "license": "Public domain (Census) / ISC (us-atlas)",
+      "vintage": "1:10m"
+    },
+    {
+      "id": "results",
+      "label": "County presidential results",
+      "source": "State election authorities / AP, compiled by tonmcg",
+      "license": "Open data",
+      "vintage": "2016, 2020, 2024"
+    },
+    {
+      "id": "census",
+      "label": "County demographics & economy",
+      "source": "US Census Bureau ACS & PEP, USDA ERS, BLS LAUS, FBI UCR",
+      "license": "Public domain",
+      "vintage": "ACS 2014-2018; population 2018"
+    },
+    {
+      "id": "places",
+      "label": "Towns & cities",
+      "source": "USGS GNIS / Census place files",
+      "license": "Public domain",
+      "vintage": "Names, county and coordinates only"
+    },
+    {
+      "id": "identity",
+      "label": "Candidate identity & office history",
+      "source": "unitedstates/congress-legislators",
+      "license": "CC0",
+      "vintage": "Current"
+    },
+    {
+      "id": "portraits",
+      "label": "Candidate portraits",
+      "source": "unitedstates/images",
+      "license": "Public domain (US government works)",
+      "vintage": "Current members only"
+    },
+    {
+      "id": "roster",
+      "label": "Challenger fields",
+      "source": "Hand-authored from public reporting (scripts/lib/roster.mjs)",
+      "license": "n/a",
+      "vintage": "Verified through 2026-05"
+    }
+  ]
+}
