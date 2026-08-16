@@ -19,9 +19,12 @@
     "sync:fec": "node scripts/sync.mjs fec",
     "sync:census": "node scripts/sync.mjs census",
     "sync:kalshi": "node scripts/sync.mjs kalshi",
-    "sync:ads": "node scripts/sync.mjs ads"
+    "sync:ads": "node scripts/sync.mjs ads",
+    "standalone": "npm run build && node scripts/build-standalone.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "d3-geo": "^3.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -36,6 +39,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.6.3",
     "us-atlas": "^3.0.1",

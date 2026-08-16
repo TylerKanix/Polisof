@@ -60,6 +60,13 @@ export function Portrait({
   const p = partyOf(party);
   const hasPhoto = bioguide && (!available || available.has(bioguide));
   const mono = useMemo(() => initials(name), [name]);
+  // The standalone build inlines portraits as data URIs.
+  const inlinePhotos = (globalThis as { __POLISOF_PHOTOS__?: Record<string, string> })
+    .__POLISOF_PHOTOS__;
+  const src =
+    bioguide && inlinePhotos?.[bioguide]
+      ? inlinePhotos[bioguide]
+      : `${import.meta.env.BASE_URL ?? '/'}photos/${bioguide}.jpg`;
 
   return (
     <div
@@ -75,7 +82,7 @@ export function Portrait({
     >
       {hasPhoto ? (
         <img
-          src={`${import.meta.env.BASE_URL ?? '/'}photos/${bioguide}.jpg`}
+          src={src}
           alt={name}
           loading="lazy"
           className="h-full w-full object-cover object-top"

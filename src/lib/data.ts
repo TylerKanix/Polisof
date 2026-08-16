@@ -18,7 +18,20 @@ const BASE = `${import.meta.env.BASE_URL ?? '/'}data`;
 
 const cache = new Map<string, Promise<unknown>>();
 
+/**
+ * The standalone build (`npm run standalone`) inlines every dataset here so
+ * the page works as one file with no network at all. When that bundle is
+ * present it is authoritative; otherwise datasets are fetched as normal.
+ */
+function embedded<T>(path: string): T | undefined {
+  const bag = (globalThis as { __POLISOF_DATA__?: Record<string, unknown> }).__POLISOF_DATA__;
+  return bag?.[path] as T | undefined;
+}
+
 export function loadJSON<T>(path: string): Promise<T> {
+  const inline = embedded<T>(path);
+  if (inline !== undefined) return Promise.resolve(inline);
+
   const url = `${BASE}/${path}`;
   if (!cache.has(url)) {
     cache.set(
@@ -80,6 +93,9 @@ export function useAsync<T>(key: string, load: () => Promise<T>): AsyncState<T> 
  * connector prompt instead.
  */
 export function loadOptional<T>(path: string): Promise<T | null> {
+  const inline = embedded<T>(path);
+  if (inline !== undefined) return Promise.resolve(inline);
+
   const url = `${BASE}/${path}`;
   if (!cache.has(url)) {
     cache.set(
