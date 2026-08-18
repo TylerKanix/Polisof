@@ -1,0 +1,151 @@
+/**
+ * The 2026 race.
+ *
+ * Everything else in this project is read out of a certified return or a state
+ * boundary file. This file cannot be: no dataset publishes who is running, and
+ * the FEC's API is not reachable from this build. So it is hand-authored, and
+ * it carries the two things hand-authored data needs to be worth anything — a
+ * citation on every claim, and a date past which it should not be trusted.
+ *
+ * `VERIFIED_THROUGH` is that date. The app shows it in the header rather than
+ * burying it, because a roster is the one part of an election site that goes
+ * stale without any error appearing anywhere.
+ *
+ * Fields that no offline source can fill are declared `null` with the reason
+ * and a link. They render as an em dash and the link — never as a zero, and
+ * never as a plausible-looking guess.
+ */
+
+export const VERIFIED_THROUGH = '2026-08';
+
+export const RACE = {
+  state: 'NJ',
+  district: 7,
+  cycle: 2026,
+  office: 'U.S. House of Representatives',
+  electionDay: '2026-11-03',
+  primaryDay: '2026-06-02',
+  open: false,
+
+  rating: {
+    label: 'Toss Up',
+    by: 'Cook Political Report',
+    url: 'https://www.cookpolitical.com/house/race/483531',
+    note: 'One of the most closely watched House races of the 2026 cycle.',
+  },
+
+  candidates: [
+    {
+      id: 'kean',
+      name: 'Thomas H. Kean Jr.',
+      party: 'R',
+      status: 'incumbent',
+      birthYear: 1968,
+      office: 'U.S. Representative, NJ-07',
+      since: 2023,
+      history: [
+        'New Jersey Senate, 2003–2022 — minority leader from 2008',
+        'New Jersey General Assembly, 2001–2003',
+        'Republican nominee for U.S. Senate, 2006',
+      ],
+      elected: [
+        { year: 2022, note: 'Defeated Tom Malinowski (D) by under a point, on these lines.' },
+        { year: 2024, note: 'Re-elected over Sue Altman (D).' },
+      ],
+      nominated: 'Unopposed in the June 2, 2026 Republican primary.',
+      note:
+        'Cast his last recorded floor vote on March 5, 2026 and was absent from ' +
+        'Congress for roughly three months, which his office attributed to a ' +
+        'personal health matter. He disclosed a depression diagnosis on returning ' +
+        'to the Capitol.',
+      sources: [
+        { label: 'CNN, April 30, 2026 — absence from the House', url: 'https://www.cnn.com/2026/04/30/politics/tom-kean-medical-issue-absence-congress' },
+        { label: 'The Hill — Kean discloses depression diagnosis on return', url: 'https://thehill.com/homenews/house/5947103-rep-tom-kean-returns-capitol-absence/' },
+      ],
+    },
+    {
+      id: 'bennett',
+      name: 'Rebecca Bennett',
+      party: 'D',
+      status: 'nominee',
+      birthYear: null,
+      office: null,
+      history: [
+        'U.S. Navy helicopter pilot',
+        'Healthcare executive, Johnson & Johnson',
+      ],
+      elected: [],
+      nominated:
+        'Won the June 2, 2026 Democratic primary with about 47% against three opponents.',
+      note:
+        'Has not held elected office. Led the Democratic field in both fundraising ' +
+        'and polling going into the primary, and campaigned on affordability and ' +
+        'on Kean’s absence from the House.',
+      sources: [
+        { label: 'WHYY — Bennett wins the NJ-07 Democratic primary', url: 'https://whyy.org/articles/new-jersey-election-2026-primary-kean-7th-district/' },
+        { label: 'New Jersey Monitor — the four-way Democratic field', url: 'https://newjerseymonitor.com/2026/05/21/four-democrats-are-vying-to-challenge-rep-thomas-kean-jr/' },
+      ],
+    },
+  ],
+
+  /**
+   * The June primary, as reported. Only the two shares that were reported
+   * precisely are carried; the other two candidates ran and their shares are
+   * left null rather than inferred from the remainder.
+   */
+  primary: {
+    date: '2026-06-02',
+    D: [
+      { name: 'Rebecca Bennett', share: 0.472 },
+      { name: 'Tina Shah', share: 0.202 },
+      { name: 'Michael Roth', share: null },
+      { name: 'Brian Varela', share: null },
+    ],
+    R: [{ name: 'Thomas H. Kean Jr.', share: 1, note: 'Unopposed' }],
+    source: {
+      label: 'Al Jazeera / WHYY, June 2–3, 2026',
+      url: 'https://whyy.org/articles/new-jersey-election-2026-primary-kean-7th-district/',
+    },
+    caveat:
+      'Municipality-level primary returns are not published as data for 2026; ' +
+      'these are reported shares, not a transcription of the certification.',
+  },
+
+  /**
+   * Numbers this build cannot obtain offline. Each renders as an em dash plus
+   * the link that would answer it, so a reader is never shown a blank where a
+   * figure belongs without being told where the figure lives.
+   */
+  liveSources: [
+    {
+      id: 'finance',
+      label: 'Campaign finance',
+      why: 'api.open.fec.gov is not reachable from this build environment.',
+      url: 'https://www.fec.gov/data/elections/house/NJ/07/2026/',
+      linkLabel: 'FEC — NJ-07, 2026',
+    },
+    {
+      id: 'ads',
+      label: 'Broadcast ad buys',
+      why: 'The FCC political file is per-station and published as scanned PDFs.',
+      url: 'https://publicfiles.fcc.gov/',
+      linkLabel: 'FCC public political file',
+    },
+    {
+      id: 'polling',
+      label: 'District polling',
+      why: 'No public poll aggregator publishes NJ-07 as data.',
+      url: 'https://www.cookpolitical.com/house/race/483531',
+      linkLabel: 'Cook Political Report — NJ-07',
+    },
+    {
+      id: 'ballot',
+      label: 'Certified general-election ballot',
+      why:
+        'By-petition and third-party candidates may qualify after the major-party ' +
+        'nominations; only the two nominees above are confirmed here.',
+      url: 'https://www.nj.gov/state/elections/election-information-candidate-filing.shtml',
+      linkLabel: 'NJ Division of Elections — candidate filings',
+    },
+  ],
+};

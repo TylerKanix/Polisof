@@ -188,3 +188,26 @@ seats in play is the entire job of that view.
 | `npm run build` | Typecheck + production build |
 | `npm run data` | Rebuild all static datasets |
 | `npm run sync` | Run every live connector |
+
+---
+
+## Polisof · NJ-07
+
+`nj07/` is a second, self-contained app built on the same design language and
+the same rules about provenance, aimed at a single seat: New Jersey's 7th, the
+most closely watched House race of the 2026 cycle.
+
+It is not this app filtered down. A district is not a state — its unit is the
+municipality, not the county, and its boundary is not something a shapefile can
+settle on its own. So NJ-07's territory is **read out of the returns**: every
+New Jersey precinct records the congressional district it voted in, all
+twenty-one counties are read, and the 94 municipalities that appear on a CD-7
+ballot are the district. Four of them straddle a district line and carry the
+measured share of their vote that was cast on a NJ-07 ballot.
+
+```bash
+cd nj07 && npm install && npm run data && npm run dev
+```
+
+See `nj07/README.md` — particularly the joins that were not obvious, and the
+map layer that is deliberately missing.

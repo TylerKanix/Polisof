@@ -1,0 +1,21 @@
+{
+  "bounds": [
+    -75.20414,
+    40.33943,
+    -74.20118,
+    41.14667
+  ],
+  "centroid": [
+    -74.81852,
+    40.72833
+  ],
+  "municipalities": 94,
+  "simplification": {
+    "quantile": 0.35,
+    "quantization": 10000,
+    "verticesBefore": 51418,
+    "verticesAfter": 18319,
+    "areaLoss": 0.000036
+  },
+  "source": "https://raw.githubusercontent.com/njam-data/new-jersey-municipalities/main/data/new-jersey-municipalities.geojson"
+}

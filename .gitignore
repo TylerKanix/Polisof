@@ -8,3 +8,4 @@ dist
 .cache
 scripts/.cache
 tsconfig.tsbuildinfo
+nj07/scripts/.cache
