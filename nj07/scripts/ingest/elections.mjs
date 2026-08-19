@@ -15,12 +15,10 @@
  *
  * Emits district.json.
  */
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
-import { fetchCached, csvToObjects, writeJSON, num, round, log, ROOT } from '../lib/util.mjs';
+import { fetchCached, csvToObjects, writeJSON, num, round, log } from '../lib/util.mjs';
 import { indexFromBoundaries, isTotalRow, voteMode, rescueMisspelling } from '../lib/munis.mjs';
 import { readOffice, readParty, properName, isWriteIn, candidateKey } from '../lib/offices.mjs';
-import { OPENELECTIONS, NJ_COUNTIES, ELECTIONS } from '../lib/sources.mjs';
+import { OPENELECTIONS, NJ_COUNTIES, ELECTIONS, BOUNDARIES } from '../lib/sources.mjs';
 
 const DISTRICT = '7';
 const MODES = ['machine', 'mail', 'early', 'provisional', 'overseas'];
@@ -104,9 +102,10 @@ function raceRegistry(store) {
 }
 
 export async function run() {
-  const geo = JSON.parse(
-    await readFile(join(ROOT, 'scripts', '.cache', 'nj-municipalities.geojson'), 'utf8'),
-  );
+  // The boundary file is what says which municipalities exist, so it is
+  // fetched here rather than assumed to be on disk — geo.mjs runs after this
+  // step and cannot be the one to put it there.
+  const geo = JSON.parse(await fetchCached(BOUNDARIES.url, BOUNDARIES.cache));
   const index = indexFromBoundaries(geo.features);
   log('elections', `${index.all().length} municipalities in the boundary file`);
 
