@@ -1,13 +1,14 @@
 /** Every municipality, ranked by whatever the map is currently showing. */
 import { useMemo } from 'react';
-import { colorFor, domainOf, METRIC_BY_ID, METRICS } from '../lib/metrics';
+import { colorFor, domainOf, metricById } from '../lib/metrics';
 import { shortNames } from '../lib/names';
 import { useUI } from '../lib/store';
-import type { Municipality } from '../lib/types';
+import type { DistrictFile } from '../lib/types';
 
-export default function TownRail({ municipalities }: { municipalities: Municipality[] }) {
+export default function TownRail({ district }: { district: DistrictFile }) {
   const { metric: metricId, selected, hover, select, setHover, sort, setSort } = useUI();
-  const metric = METRIC_BY_ID.get(metricId) ?? METRICS[0];
+  const municipalities = district.municipalities;
+  const metric = metricById(district, metricId);
   const domain = useMemo(() => domainOf(metric, municipalities), [metric, municipalities]);
   const shortNameOf = useMemo(() => shortNames(municipalities), [municipalities]);
 

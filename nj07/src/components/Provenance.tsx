@@ -166,6 +166,32 @@ export default function Provenance({
             </p>
           </section>
 
+          {district.meta.pending?.length ? (
+            <section>
+              <SectionTitle>Asked for on every build, not yet published</SectionTitle>
+              <div className="space-y-2">
+                {district.meta.pending.map((p) => (
+                  <div key={p.id} className="rounded border border-dashed border-hairline p-3">
+                    <div className="text-[12px] font-medium text-ink-2">{p.label}</div>
+                    <p className="mt-1 text-[11px] leading-snug text-ink-3">{p.why}</p>
+                    <p className="mt-1 text-[10px] leading-snug text-ink-3/80">
+                      The build requests this file on every run. The day it exists, the dataset
+                      grows and the governor layer moves to it with nothing to edit.
+                    </p>
+                    <a
+                      href={p.expectedAt}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 inline-block break-all font-mono text-[10px] text-dem/80 hover:underline"
+                    >
+                      {p.expectedAt}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
           <section>
             <SectionTitle>Known gaps</SectionTitle>
             <div className="space-y-2">

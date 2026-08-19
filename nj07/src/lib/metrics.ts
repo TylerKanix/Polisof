@@ -21,13 +21,14 @@ import {
   PRES_24,
   SEN_24,
   districtIn,
+  latestGovernor,
   marginOf,
   netContribution,
   overperformance,
   swing,
   turnoutRate,
 } from './analysis';
-import type { Municipality } from './types';
+import type { DistrictFile, Municipality } from './types';
 
 export interface Metric {
   id: string;
@@ -49,7 +50,7 @@ export interface Metric {
 const marginFmt = (v: number | null) =>
   v === null ? DASH : `${v > 0 ? 'R+' : v < 0 ? 'D+' : '±'}${Math.abs(v).toFixed(1)}`;
 
-export const METRICS: Metric[] = [
+const STATIC_METRICS: Metric[] = [
   {
     id: 'house24',
     label: '2024 House — Kean v Altman',
@@ -184,7 +185,65 @@ export const METRICS: Metric[] = [
   },
 ];
 
-export const METRIC_BY_ID = new Map(METRICS.map((m) => [m.id, m]));
+/**
+ * The governor layer is built from the data rather than written down, because
+ * which governor's race this district can show is not a fixed fact. The most
+ * recent one present wins, so the day a 2025 transcription appears in the
+ * build the layer relabels itself from Guadagno–Murphy to Ciattarelli–Sherrill
+ * with nothing here to edit.
+ */
+function governorMetric(district: DistrictFile): Metric | null {
+  const race = latestGovernor(district);
+  if (!race) return null;
+  const total = district.district[race.key];
+  const [a, b] = total?.cands ?? [];
+  const poles: [string, string] =
+    a && b
+      ? [
+          (b.party === 'D' ? b : a).name.split(' ').pop() ?? 'D',
+          (a.party === 'R' ? a : b).name.split(' ').pop() ?? 'R',
+        ]
+      : ['Democrat', 'Republican'];
+  return {
+    id: 'governor',
+    label: `${race.year} Governor — ${poles[1]} v ${poles[0]}`,
+    group: 'Margin',
+    hint: 'The most recent governor’s race this build can reach',
+    kind: 'diverging',
+    value: (m) => marginOf(m, race.key),
+    format: marginFmt,
+    poles,
+    note:
+      'A governor’s race is the closest thing to a mid-decade read on an ' +
+      'electorate. This is the most recent one available as data by ' +
+      'municipality; the 2025 race is not published in machine-readable form ' +
+      'anywhere this build can reach, and the layer will move to it by itself ' +
+      'when it is.',
+  };
+}
+
+const cache = new WeakMap<DistrictFile, Metric[]>();
+
+/** The layer list for a given dataset. Memoised per file. */
+export function metricsFor(district: DistrictFile): Metric[] {
+  const hit = cache.get(district);
+  if (hit) return hit;
+  const gov = governorMetric(district);
+  const list = gov
+    ? [
+        ...STATIC_METRICS.slice(0, 3),
+        gov,
+        ...STATIC_METRICS.slice(3),
+      ]
+    : STATIC_METRICS;
+  cache.set(district, list);
+  return list;
+}
+
+export function metricById(district: DistrictFile, id: string): Metric {
+  const list = metricsFor(district);
+  return list.find((m) => m.id === id) ?? list[0];
+}
 
 /** The domain a sequential layer is stretched across, computed from the data. */
 export function domainOf(metric: Metric, municipalities: Municipality[]): [number, number] {

@@ -76,10 +76,10 @@ export default function App() {
         under the map so the page scrolls down rather than sideways.
       */}
       <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
-        <TownRail municipalities={district.data.municipalities} />
+        <TownRail district={district.data} />
 
         <main className="relative min-h-[62vh] w-full shrink-0 bg-plane lg:min-h-0 lg:w-auto lg:flex-1">
-          <MapPane topo={topo.data} municipalities={district.data.municipalities} />
+          <MapPane topo={topo.data} district={district.data} />
         </main>
 
         <aside className="flex w-full shrink-0 border-t border-hairline bg-plane lg:w-[412px] lg:border-l lg:border-t-0">
@@ -91,7 +91,7 @@ export default function App() {
         </aside>
       </div>
 
-      <CommandPalette municipalities={district.data.municipalities} />
+      <CommandPalette district={district.data} />
       <Provenance
         manifest={manifest.data}
         district={district.data}

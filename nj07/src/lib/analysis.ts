@@ -234,3 +234,27 @@ export function certifiedHouse(file: DistrictFile, electionId: string) {
     linesChanged: r.townsStillInDistrict < r.towns,
   };
 }
+
+/**
+ * The most recent governor's race present in the data.
+ *
+ * Returned rather than hard-coded so the map layer and the panels follow the
+ * dataset: today that is 2017, and it becomes 2025 the moment a municipal
+ * transcription of that race exists.
+ */
+export function latestGovernor(file: DistrictFile) {
+  const keys = Object.keys(file.district).filter((k) => k.endsWith('/governor'));
+  if (!keys.length) return null;
+  const sorted = keys.sort();
+  const newest = sorted[sorted.length - 1];
+  return { key: newest, year: Number(newest.slice(1, 5)) };
+}
+
+/** Every governor's race in the data, newest first. */
+export function governorRaces(file: DistrictFile) {
+  return Object.keys(file.district)
+    .filter((k) => k.endsWith('/governor'))
+    .sort()
+    .reverse()
+    .map((key) => ({ key, year: Number(key.slice(1, 5)) }));
+}

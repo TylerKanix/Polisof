@@ -25,7 +25,7 @@ import {
   candidateKey,
   isAdministrative,
 } from '../lib/offices.mjs';
-import { OPENELECTIONS, NJ_COUNTIES, ELECTIONS, BOUNDARIES } from '../lib/sources.mjs';
+import { OPENELECTIONS, NJ_COUNTIES, ELECTIONS, PENDING, BOUNDARIES } from '../lib/sources.mjs';
 
 const DISTRICT = '7';
 const MODES = ['machine', 'mail', 'early', 'provisional', 'overseas'];
@@ -141,7 +141,11 @@ export async function run() {
     return byOffice.get(office);
   };
 
-  for (const election of ELECTIONS) {
+  // Pending elections are attempted on every run. A 404 is the expected
+  // answer today and not an error; the day it stops being a 404 the dataset
+  // grows on its own.
+  const found = new Set();
+  for (const election of [...ELECTIONS, ...PENDING]) {
     const files =
       election.level === 'precinct'
         ? NJ_COUNTIES.map((c) => ({ county: c, rel: election.file(c) }))
@@ -152,9 +156,16 @@ export async function run() {
       try {
         text = await fetchCached(url(rel), cacheName(rel));
       } catch (err) {
-        log('elections', `WARN ${rel} unavailable — ${err.message}`);
+        const pending = PENDING.some((p) => p.id === election.id);
+        log(
+          'elections',
+          pending
+            ? `${election.id} not published yet (${rel}) — skipped, layer stays off`
+            : `WARN ${rel} unavailable — ${err.message}`,
+        );
         continue;
       }
+      found.add(election.id);
       const rows = csvToObjects(text);
       const placeCol = election.level === 'precinct' ? 'precinct' : 'municipality';
 
@@ -563,12 +574,20 @@ export async function run() {
       state: 'NJ',
       district: Number(DISTRICT),
       generatedAt: new Date().toISOString().slice(0, 10),
-      elections: ELECTIONS.map((e) => ({
+      elections: [...ELECTIONS, ...PENDING]
+        .filter((e) => found.has(e.id))
+        .map((e) => ({
+          id: e.id,
+          year: e.year,
+          date: e.date,
+          label: e.label,
+          level: e.level,
+        })),
+      pending: PENDING.filter((e) => !found.has(e.id)).map((e) => ({
         id: e.id,
-        year: e.year,
-        date: e.date,
         label: e.label,
-        level: e.level,
+        why: e.why,
+        expectedAt: `${OPENELECTIONS}/${e.file}`,
       })),
       membership: {
         method:

@@ -3,24 +3,25 @@ import { useRef, useState } from 'react';
 import HoverCard from './HoverCard';
 import LayerControls from './LayerControls';
 import MapStage from './MapStage';
-import { METRIC_BY_ID, METRICS } from '../lib/metrics';
+import { metricById } from '../lib/metrics';
 import { useUI } from '../lib/store';
-import type { Municipality } from '../lib/types';
+import type { DistrictFile } from '../lib/types';
 
 export default function MapPane({
   topo,
-  municipalities,
+  district,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   topo: any;
-  municipalities: Municipality[];
+  district: DistrictFile;
 }) {
+  const municipalities = district.municipalities;
   const host = useRef<HTMLDivElement>(null);
   const [pointer, setPointer] = useState<{ x: number; y: number; w: number; h: number } | null>(
     null,
   );
   const { hover, metric: metricId } = useUI();
-  const metric = METRIC_BY_ID.get(metricId) ?? METRICS[0];
+  const metric = metricById(district, metricId);
   const hovered = hover ? municipalities.find((m) => m.geoid === hover) : null;
 
   return (
@@ -45,7 +46,7 @@ export default function MapPane({
           height={pointer.h}
         />
       ) : null}
-      <LayerControls municipalities={municipalities} />
+      <LayerControls district={district} />
     </div>
   );
 }

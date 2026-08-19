@@ -1,12 +1,9 @@
 /** One municipality, in full. */
 import {
-  HOUSE_16,
   HOUSE_18,
   HOUSE_24,
   PRES_16,
   PRES_24,
-  SEN_18,
-  SEN_24,
   marginOf,
   netContribution,
   overperformance,
@@ -16,21 +13,39 @@ import {
   twoParty,
 } from '../lib/analysis';
 import { DASH, int, pct, signedPct } from '../lib/format';
-import { METRIC_BY_ID, METRICS } from '../lib/metrics';
+import { metricById } from '../lib/metrics';
 import { PARTY } from '../lib/palette';
 import { useUI } from '../lib/store';
 import type { DistrictFile, Municipality } from '../lib/types';
 import { Chip, MarginBar, ResultRow, SectionTitle, Stat } from './primitives';
 
-const RACES = [
-  { key: HOUSE_24, label: '2024 U.S. House' },
-  { key: PRES_24, label: '2024 President' },
-  { key: SEN_24, label: '2024 U.S. Senate' },
-  { key: HOUSE_18, label: '2018 U.S. House' },
-  { key: SEN_18, label: '2018 U.S. Senate' },
-  { key: PRES_16, label: '2016 President' },
-  { key: HOUSE_16, label: '2016 U.S. House' },
-];
+const OFFICE_LABEL: Record<string, string> = {
+  president: 'President',
+  governor: 'Governor',
+  ussenate: 'U.S. Senate',
+  ushouse: 'U.S. House',
+};
+
+const OFFICE_ORDER = ['president', 'governor', 'ussenate', 'ushouse'];
+
+/**
+ * Every race this town has on file, newest first — read off the town rather
+ * than listed, so a cycle added to the datasets shows up here on its own.
+ */
+function racesOf(muni: Municipality) {
+  return Object.keys(muni.results)
+    .filter((k) => !k.includes('/ushouse@'))
+    .map((key) => {
+      const [election, office] = key.split('/');
+      return { key, office, year: Number(election.slice(1)) };
+    })
+    .filter((r) => OFFICE_LABEL[r.office])
+    .sort(
+      (a, b) =>
+        b.year - a.year || OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office),
+    )
+    .map((r) => ({ key: r.key, label: `${r.year} ${OFFICE_LABEL[r.office]}` }));
+}
 
 const MODE_LABEL: Record<string, string> = {
   machine: 'Election day',
@@ -48,7 +63,7 @@ export default function TownPanel({
   district: DistrictFile;
 }) {
   const { select, metric: metricId } = useUI();
-  const metric = METRIC_BY_ID.get(metricId) ?? METRICS[0];
+  const metric = metricById(district, metricId);
   const rank = rankOf(district.municipalities, muni, metric.value);
   const density = muni.pop2010 && muni.sqMiles ? muni.pop2010 / muni.sqMiles : null;
   const split = overperformance(muni, HOUSE_24, PRES_24);
@@ -147,7 +162,7 @@ export default function TownPanel({
       <section className="border-b border-hairline px-4 py-3">
         <SectionTitle>Certified results</SectionTitle>
         <div className="space-y-3.5">
-          {RACES.map(({ key, label }) => {
+          {racesOf(muni).map(({ key, label }) => {
             const res = muni.results[key];
             if (!res) return null;
             const tp = twoParty(res);

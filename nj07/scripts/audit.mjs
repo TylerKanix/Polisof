@@ -71,7 +71,14 @@ export async function run() {
   }
 
   // ---- Internal consistency ------------------------------------------------
-  const expected = ['g2024/president', 'g2024/ussenate', 'g2024/ushouse', 'g2016/president'];
+  const expected = [
+    'g2024/president',
+    'g2024/ussenate',
+    'g2024/ushouse',
+    'g2016/president',
+    'g2013/governor',
+    'g2017/governor',
+  ];
   for (const m of municipalities) {
     for (const key of expected) {
       check(Boolean(m.results[key]), `${m.name}: missing ${key}`);

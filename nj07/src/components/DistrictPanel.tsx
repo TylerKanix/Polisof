@@ -26,17 +26,49 @@ const HOUSE_CYCLES = [
   { id: 'g2016', label: '2016 U.S. House' },
 ];
 
+const OFFICE_LABEL: Record<string, string> = {
+  president: 'President',
+  governor: 'Governor',
+  ussenate: 'U.S. Senate',
+};
+
+/** Ballot order, so two races in one year sort the way a ballot reads. */
+const OFFICE_ORDER = ['president', 'governor', 'ussenate'];
+
+/** Hand-written context, where there is something worth saying. */
+const BASELINE_NOTES: Record<string, string> = {
+  [PRES_24]: 'The baseline underneath',
+  [SEN_24]: 'Kim won the state, not this seat',
+  [SEN_18]: 'A Democratic midterm',
+  [PRES_16]: 'Same towns, eight years back',
+  'g2017/governor': 'Murphy won the state by 14 and lost these towns by 11',
+  'g2013/governor': 'A Christie landslide, for scale',
+};
+
 /**
- * Statewide races, restricted to the district's current 94 towns. Every town
- * voted in the same contest, so this is a coherent question and the standard
- * way to state what a redrawn district leans.
+ * Statewide races, restricted to the district's current 94 towns — coherent
+ * precisely because every town voted in the same contest. Derived from
+ * whatever the build contains rather than listed, so a cycle added to the
+ * datasets appears here without an edit.
  */
-const BASELINES = [
-  { key: PRES_24, label: '2024 President', sub: 'The baseline underneath' },
-  { key: SEN_24, label: '2024 U.S. Senate', sub: 'Kim won the state, not this seat' },
-  { key: SEN_18, label: '2018 U.S. Senate', sub: 'A Democratic midterm' },
-  { key: PRES_16, label: '2016 President', sub: 'Same towns, eight years back' },
-];
+function baselinesOf(district: DistrictFile) {
+  return Object.keys(district.district)
+    .filter((k) => !k.includes('/ushouse'))
+    .map((key) => {
+      const [election, office] = key.split('/');
+      return { key, office, year: Number(election.slice(1)) };
+    })
+    .filter((b) => OFFICE_LABEL[b.office])
+    .sort(
+      (a, b) =>
+        b.year - a.year || OFFICE_ORDER.indexOf(a.office) - OFFICE_ORDER.indexOf(b.office),
+    )
+    .map((b) => ({
+      key: b.key,
+      label: `${b.year} ${OFFICE_LABEL[b.office]}`,
+      sub: BASELINE_NOTES[b.key] ?? '',
+    }));
+}
 
 export default function DistrictPanel({
   district,
@@ -52,6 +84,7 @@ export default function DistrictPanel({
   const top = decisive(district.municipalities, HOUSE_24).slice(0, 8);
   const territory = territoryChange(district.municipalities);
   const shortNameOf = shortNames(district.municipalities);
+  const baselines = baselinesOf(district);
   const house24 = districtSummary(district, HOUSE_24);
   const pres24 = districtSummary(district, PRES_24);
 
@@ -214,7 +247,7 @@ export default function DistrictPanel({
           Current lines, earlier elections
         </SectionTitle>
         <div className="space-y-3">
-          {BASELINES.map(({ key, label, sub }) => {
+          {baselines.map(({ key, label, sub }) => {
             const s = districtSummary(district, key);
             if (!s) return null;
             return (

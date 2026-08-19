@@ -1,25 +1,27 @@
 /** Layer picker and legend, anchored to the map. */
 import { useMemo, useState } from 'react';
-import { METRICS, colorFor, domainOf, type Metric } from '../lib/metrics';
+import { colorFor, domainOf, metricsFor, type Metric } from '../lib/metrics';
 import { DEM_ARM, GOP_ARM, NEUTRAL, NO_DATA, SEQUENTIAL } from '../lib/palette';
 import { useUI } from '../lib/store';
-import type { Municipality } from '../lib/types';
+import type { DistrictFile, Municipality } from '../lib/types';
 import { districtColor } from '../lib/metrics';
 import { districtIn, HOUSE_18 } from '../lib/analysis';
 
-export default function LayerControls({ municipalities }: { municipalities: Municipality[] }) {
+export default function LayerControls({ district }: { district: DistrictFile }) {
   const { metric: metricId, setMetric, labels, toggleLabels } = useUI();
   const [open, setOpen] = useState(false);
-  const metric = METRICS.find((m) => m.id === metricId) ?? METRICS[0];
+  const municipalities = district.municipalities;
+  const metrics = useMemo(() => metricsFor(district), [district]);
+  const metric = metrics.find((m) => m.id === metricId) ?? metrics[0];
 
   const groups = useMemo(() => {
     const g = new Map<string, Metric[]>();
-    for (const m of METRICS) {
+    for (const m of metrics) {
       if (!g.has(m.group)) g.set(m.group, []);
       g.get(m.group)!.push(m);
     }
     return [...g];
-  }, []);
+  }, [metrics]);
 
   return (
     <div className="pointer-events-none absolute bottom-3 left-3 z-20 w-[248px] sm:bottom-4 sm:left-4 sm:w-[292px]">

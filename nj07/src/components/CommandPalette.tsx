@@ -1,14 +1,15 @@
 /** ⌘K — every town, county and layer in one list. */
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { METRICS } from '../lib/metrics';
+import { metricsFor } from '../lib/metrics';
 import { useUI } from '../lib/store';
-import type { Municipality } from '../lib/types';
+import type { DistrictFile } from '../lib/types';
 
 type Item =
   | { kind: 'town'; id: string; label: string; hint: string }
   | { kind: 'layer'; id: string; label: string; hint: string };
 
-export default function CommandPalette({ municipalities }: { municipalities: Municipality[] }) {
+export default function CommandPalette({ district }: { district: DistrictFile }) {
+  const municipalities = district.municipalities;
   const { paletteOpen, setPalette, select, setMetric, setHover } = useUI();
   const [query, setQuery] = useState('');
   const [cursor, setCursor] = useState(0);
@@ -41,14 +42,14 @@ export default function CommandPalette({ municipalities }: { municipalities: Mun
       label: m.name,
       hint: `${m.county} County${m.inDistrict === 'split' ? ' · split' : ''}`,
     }));
-    const layers: Item[] = METRICS.map((m) => ({
+    const layers: Item[] = metricsFor(district).map((m) => ({
       kind: 'layer',
       id: m.id,
       label: m.label,
       hint: `Layer · ${m.group}`,
     }));
     return [...towns, ...layers];
-  }, [municipalities]);
+  }, [municipalities, district]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();

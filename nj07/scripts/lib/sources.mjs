@@ -32,12 +32,28 @@ export const NJ_COUNTIES = [
  */
 export const ELECTIONS = [
   {
+    id: 'g2013',
+    year: 2013,
+    date: '2013-11-05',
+    label: '2013 general',
+    level: 'municipal',
+    file: '2013/20131105__nj__general__municipal.csv',
+  },
+  {
     id: 'g2016',
     year: 2016,
     date: '2016-11-08',
     label: '2016 general',
     level: 'municipal',
     file: '2016/20161108__nj__general__municipal.csv',
+  },
+  {
+    id: 'g2017',
+    year: 2017,
+    date: '2017-11-07',
+    label: '2017 general',
+    level: 'municipal',
+    file: '2017/20171107__nj__general__municipal.csv',
   },
   {
     id: 'g2018',
@@ -54,6 +70,33 @@ export const ELECTIONS = [
     label: '2024 general',
     level: 'precinct',
     file: (county) => `2024/20241105__nj__general__${county}__precinct.csv`,
+  },
+];
+
+/**
+ * Elections this build wants and cannot yet have.
+ *
+ * The 2025 governor's race is the most recent read there is on this
+ * electorate, and no machine-readable municipal transcription of it exists in
+ * any source this build can reach — OpenElections stops at 2024, and the
+ * state publishes county-clerk PDFs. Rather than leave that as a note in a
+ * README, the build *asks* for the file on every run: the day it appears at
+ * this path, `npm run data` picks it up and the layer turns on by itself.
+ *
+ * A missing pending election is a normal outcome, not an error. To supply the
+ * file yourself, drop it in `scripts/.cache` under the cache name below, in
+ * OpenElections' municipal format (county, municipality, office, district,
+ * party, candidate, votes).
+ */
+export const PENDING = [
+  {
+    id: 'g2025',
+    year: 2025,
+    date: '2025-11-04',
+    label: '2025 general — governor',
+    level: 'municipal',
+    file: '2025/20251104__nj__general__municipal.csv',
+    why: 'Sherrill v Ciattarelli. OpenElections has not transcribed 2025; the state publishes county-clerk PDFs.',
   },
 ];
 

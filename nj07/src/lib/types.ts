@@ -81,6 +81,7 @@ export interface DistrictFile {
       counties: string[];
     };
     gaps: { id: string; what: string; why: string }[];
+    pending: { id: string; label: string; why: string; expectedAt: string }[];
     unassignedVotes: number;
     districtUnassigned: { votes: number; rows: number; places: string[] };
     unresolvedRows: { row: string; votes: number }[];

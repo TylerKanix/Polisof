@@ -1,10 +1,11 @@
 /** Office, party and candidate-name normalisation across four clerk formats. */
 
 /** Canonical office keys, in ballot order. */
-export const OFFICES = ['president', 'ussenate', 'ushouse'];
+export const OFFICES = ['president', 'governor', 'ussenate', 'ushouse'];
 
 export const OFFICE_LABEL = {
   president: 'President',
+  governor: 'Governor',
   ussenate: 'U.S. Senate',
   ushouse: 'U.S. House',
 };
@@ -31,6 +32,11 @@ export function readOffice(rawOffice, rawDistrict) {
   if (/registered voters/.test(lower)) return { office: 'registered', district: null };
   if (/ballots cast/.test(lower)) return { office: 'ballots', district: null };
   if (/president/.test(lower)) return { office: 'president', district: null };
+  // Governor is a statewide race, so it needs no district — and `Lieutenant
+  // Governor` must not match it, since the two run on one line in New Jersey.
+  if (/\bgovernor\b/.test(lower) && !/lieutenant|lt\.?\s+governor/.test(lower)) {
+    return { office: 'governor', district: null };
+  }
   // Sussex files the office as `U.S.House`, with no space. Whitespace between
   // the abbreviation and the chamber is optional everywhere for that reason.
   if (/u\.?\s*s\.?\s*senate|united states senate/.test(lower)) {

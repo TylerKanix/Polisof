@@ -30,10 +30,10 @@ far the incumbent ran ahead of his own ticket there.
 one, how the county filed them, and whether the town was even in this district
 two cycles ago.
 
-**Eleven map layers** — partisan margin in four races, the 2016→2024 swing,
-Kean's margin against Trump's in the same town, net votes supplied to the
-district's margin, turnout, ballots cast, density, and the district's 2018
-territory.
+**Twelve map layers** — partisan margin in five races including the most recent
+governor's race, the 2016→2024 swing, Kean's margin against Trump's in the same
+town, net votes supplied to the district's margin, turnout, ballots cast,
+density, and the district's 2018 territory.
 
 `⌘K` searches all 94 municipalities and every layer.
 
@@ -136,6 +136,37 @@ So the two are now separated:
 There is no third row combining them, because for a House race there is nothing
 to combine: 29 of today's towns were voting in someone else's election.
 
+### The governor layer names itself
+
+A governor's race is the closest thing to a mid-decade read on an electorate,
+and New Jersey holds them in odd years when nothing else is on the ballot. The
+layer is therefore built from the data rather than written down: it picks the
+most recent gubernatorial race present and takes its label from the candidates
+in it. Today that is **2017, Guadagno v Murphy** — Murphy won the state by 14
+and lost these towns by 11.
+
+**2025 — Sherrill v Ciattarelli — is not in it, and not for want of trying.**
+No machine-readable municipal transcription of that race exists in any source
+this build can reach: OpenElections stops at 2024, and the state publishes
+county-clerk PDFs. So the build *asks* for the file on every run rather than
+leaving the gap as a footnote. The day it appears at the path named in the
+provenance panel, `npm run data` picks it up, the district gains a 2025 row,
+and the map layer relabels itself to Ciattarelli v Sherrill with nothing to
+edit.
+
+To supply it yourself before then, drop a CSV at
+`scripts/.cache/2025__20251104__nj__general__municipal.csv` in OpenElections'
+municipal format:
+
+```csv
+county,municipality,office,district,party,candidate,votes
+Hunterdon,Alexandria Twp,Governor,,Democratic,Mikie Sherrill - Dale Caldwell,1234
+```
+
+Municipality spellings do not have to match anything — the resolver in
+`scripts/lib/munis.mjs` handles the four ways New Jersey clerks spell a town,
+and running mates on the candidate line are stripped. Then `npm run data`.
+
 ### There is deliberately no vote-by-mail layer
 
 It is the obvious layer to build from this data and it would be a lie. Hunterdon
@@ -231,7 +262,8 @@ settings the district's total area is preserved to 99.996%.
 ### Sources
 
 - **Certified returns** — [OpenElections](https://github.com/openelections/openelections-data-nj),
-  transcribed from county clerk certifications. 2016, 2018 and 2024 generals.
+  transcribed from county clerk certifications. The 2013, 2016, 2017, 2018 and
+  2024 generals; 2025 is requested on every build and not yet published.
 - **Municipal boundaries** — NJ Office of GIS (NJGIN), via
   [njam-data/new-jersey-municipalities](https://github.com/njam-data/new-jersey-municipalities).
 - **The 2026 race** — public reporting, cited per claim in `scripts/lib/roster.mjs`.
