@@ -9,6 +9,12 @@ npm run data     # build the static datasets (first run fetches sources)
 npm run dev      # http://localhost:5173
 ```
 
+Node 18 or newer — the ingest scripts use the built-in `fetch`. Everything
+runs on your machine: there is no build service, no API key, and nothing to
+deploy. `npm run data` is the only step that touches the network, and only the
+first time; sources cache under `scripts/.cache`, so every later run is
+offline.
+
 `npm run standalone` produces a single 1.2 MB HTML file with every dataset
 inlined — it opens from `file://` with no network at all.
 

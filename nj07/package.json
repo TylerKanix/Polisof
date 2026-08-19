@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Polisof NJ-07 \u2014 a single-district election intelligence terminal for New Jersey's 7th.",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
