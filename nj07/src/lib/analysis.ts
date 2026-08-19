@@ -142,8 +142,8 @@ export function decisive(municipalities: Municipality[], key: string) {
  * number of net votes the losing side was short, and the swing that would have
  * been needed across the towns that actually cast ballots.
  */
-export function pathToVictory(file: DistrictFile, key = HOUSE_24) {
-  const s = districtSummary(file, key);
+export function pathToVictory(file: DistrictFile, electionId = 'g2024') {
+  const s = certifiedHouse(file, electionId);
   if (!s) return null;
   const twoPartyTotal = s.d + s.r;
   const netShort = Math.abs(s.net);
@@ -203,4 +203,34 @@ export function rankOf(
     .sort((a, b) => b.v - a.v);
   const i = scored.findIndex((x) => x.m.geoid === target.geoid);
   return i < 0 ? null : { rank: i + 1, of: scored.length };
+}
+
+/**
+ * The district's own House race, as certified.
+ *
+ * Distinct from `districtSummary`, and the distinction matters: that one
+ * answers "how did today's 94 towns vote", which for a statewide race is the
+ * standard way to state a district's lean. For a House race it is not a
+ * question with an answer — 29 of today's towns voted in another district's
+ * election — and reporting it as though it were is how a panel ends up saying
+ * Lance beat Malinowski in 2018, which is the opposite of what happened.
+ */
+export function certifiedHouse(file: DistrictFile, electionId: string) {
+  const r = file.certifiedHouse?.[electionId];
+  if (!r) return null;
+  const of = (p: PartyLetter) =>
+    r.cands.filter((c) => c.party === p).reduce((a, c) => a + c.votes, 0);
+  const d = of('D');
+  const r_ = of('R');
+  return {
+    ...r,
+    d,
+    r: r_,
+    margin: d + r_ === 0 ? 0 : ((r_ - d) / (r_ + d)) * 100,
+    net: r_ - d,
+    winner: r.cands[0] ?? null,
+    runnerUp: r.cands[1] ?? null,
+    /** True when the district's lines have changed since. */
+    linesChanged: r.townsStillInDistrict < r.towns,
+  };
 }

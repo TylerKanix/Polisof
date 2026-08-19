@@ -42,35 +42,92 @@ export function readOffice(rawOffice, rawDistrict) {
   return { office: null, district: null };
 }
 
+/**
+ * Party, as New Jersey files it.
+ *
+ * Only two parties appear on a New Jersey ballot as parties. Everyone else
+ * runs by petition under a **slogan** of their own choosing — `For the
+ * People`, `Make It Simple`, `Women of Power` — printed in the same column,
+ * and emphatically not a party. A few of those slogans are the name of a real
+ * party, and those are read as the party they name; the rest mean
+ * "independent", not "some eighth party".
+ */
 const PARTY_CODES = new Map(
   Object.entries({
-    dem: 'D', democrat: 'D', democratic: 'D', 'democratic party': 'D',
-    rep: 'R', republican: 'R', 'republican party': 'R', gop: 'R',
-    grn: 'G', green: 'G',
-    lib: 'L', libertarian: 'L',
-    con: 'C', constitution: 'C',
-    soc: 'S', socialist: 'S',
+    // Camden files the bare letter, which is why the single-letter codes are
+    // here: without them its Harris and Trump rows fell through to the slogan
+    // branch and came back independent.
+    d: 'D', dem: 'D', democrat: 'D', democratic: 'D', 'democratic party': 'D',
+    r: 'R', rep: 'R', republican: 'R', 'republican party': 'R', gop: 'R',
+    g: 'G', grn: 'G', green: 'G', 'green party': 'G',
+    l: 'L', lib: 'L', libertarian: 'L', 'libertarian party': 'L',
+    con: 'C', cst: 'C', constitution: 'C', 'constitution party': 'C',
+    swp: 'S', soc: 'S', socialist: 'S', 'socialist party': 'S',
+    'socialist workers party': 'S',
+    'socialism and liberation': 'S',
+    'workers world party': 'S',
+    i: 'I', ind: 'I', independent: 'I',
   }),
 );
 
 /**
- * Party letter. Union prefixes the candidate with it (`DEM Sue ALTMAN`) and
- * Morris omits it entirely, so both the party column and the name are read.
- * `NON` covers the by-petition lines New Jersey allows; they are independents
- * as far as this app is concerned, and their slogan-party is not a party.
+ * `NON` is Union County's marker for a line nominated by petition rather than
+ * through a party primary. It records how someone reached the ballot, not what
+ * they are, so it must yield no party at all.
+ */
+const BY_PETITION = /^(NON|PET)$/i;
+
+/**
+ * Party letter, or null when the source offers no usable evidence.
+ *
+ * Null matters more than it looks. Party is settled race-wide from every
+ * county that filed one, so a county that files only a petition marker must
+ * contribute *nothing* rather than a wrong answer that then competes for the
+ * majority — otherwise a candidate five counties call Green and one calls
+ * `NON` comes out as two different people's worth of party.
  */
 export function readParty(rawParty, rawCandidate) {
   const p = String(rawParty ?? '').trim().toLowerCase();
   if (PARTY_CODES.has(p)) return PARTY_CODES.get(p);
-  const prefix = String(rawCandidate ?? '').trim().match(/^(DEM|REP|NON|GRN|LIB|CON|SOC)\s+/i);
+
+  const prefix = String(rawCandidate ?? '').trim().match(/^([A-Za-z]{3})\s+/);
   if (prefix) {
     const key = prefix[1].toLowerCase();
+    if (BY_PETITION.test(prefix[1])) return null;
     if (PARTY_CODES.has(key)) return PARTY_CODES.get(key);
-    if (key === 'non') return 'I';
   }
-  if (p === 'non' || p === 'independent' || p === 'ind') return 'I';
+  if (BY_PETITION.test(p)) return null;
   if (p === '') return null;
-  return 'O';
+  // A slogan sitting in the party column is a by-petition candidate — an
+  // independent, not a member of some eighth party.
+  return 'I';
+}
+
+/**
+ * Rows that are ballot accounting, not candidates.
+ *
+ * Warren files `Under Votes` and `Over Votes` as if they were people — 4,336
+ * of them across this district. Counted as a candidate they inflate the
+ * denominator, so every real candidate's share reads low. They are dropped,
+ * and the ingest reports what it dropped.
+ */
+export function isAdministrative(name) {
+  return /^(under|over)\s*votes?$|^(total|blank|void|spoiled|invalid|unresolved)\b|^no candidate|^personal choice$/i.test(
+    String(name ?? '').trim(),
+  );
+}
+
+/**
+ * Four counties print the whole ticket — `Kamala D. Harris and Tim Walz`,
+ * `Donald J. TRUMP - JD VANCE` — while the rest print the head of the ticket
+ * alone. Left alone that splits one candidate's statewide vote across two
+ * identities. The running mate is dropped so a presidential row means the same
+ * thing in every county.
+ */
+export function headOfTicket(name) {
+  return String(name ?? '')
+    .split(/\s+(?:and|&|-|\/)\s+/i)[0]
+    .trim();
 }
 
 const LOWER_WORDS = new Set(['de', 'la', 'van', 'von', 'del', 'di', 'da']);
@@ -81,7 +138,7 @@ const LOWER_WORDS = new Set(['de', 'la', 'van', 'von', 'del', 'di', 'da']);
  * still traces to the certification.
  */
 export function properName(raw) {
-  let s = String(raw ?? '').trim().replace(/^(DEM|REP|NON|GRN|LIB|CON|SOC)\s+/i, '');
+  let s = headOfTicket(String(raw ?? '').trim().replace(/^(DEM|REP|NON|GRN|LIB|CON|SOC)\s+/i, ''));
   if (!s) return '';
   if (/^write[- ]?ins?$/i.test(s)) return 'Write-in';
   // Only recase words that are shouted; leave mixed-case spellings alone.
@@ -121,7 +178,7 @@ const NAME_SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v']);
  * merge two different people.
  */
 export function candidateKey(name) {
-  return String(name ?? '')
+  return headOfTicket(String(name ?? ''))
     .toLowerCase()
     .replace(/[^a-z\s]/g, ' ')
     .split(/\s+/)

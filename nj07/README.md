@@ -6,6 +6,7 @@ district, the Kean–Bennett race, and the 94 municipalities that decide it.
 ```bash
 npm install
 npm run data     # build the static datasets (first run fetches sources)
+npm run audit    # check them against the certified results
 npm run dev      # http://localhost:5173
 ```
 
@@ -113,6 +114,28 @@ it would name is otherwise absent from that office's section of that file and
 exactly one town is close enough. Every correction that fires is listed in the
 provenance panel; there are 33.
 
+### The panel answers two different questions, and says which
+
+A seat whose lines moved has two honest histories, and mixing them produces
+confident nonsense. This project shipped exactly that for a while: a row
+labelled *2018 U.S. House* reporting Leonard Lance ahead of Tom Malinowski by
+0.4. Malinowski won that race by five points. The number was the 2018 NJ-07
+race restricted to the 65 towns that are *still* in the district — a real
+quantity, and not the one the label claimed.
+
+So the two are now separated:
+
+- **This seat's elections** are the elections themselves, over the towns the
+  district held at the time, including the ones since drawn out of it. They
+  reproduce the certified result exactly for all three cycles.
+- **Current lines, earlier elections** covers statewide races only — President
+  and Senate — summed over today's 94 towns. That is a coherent question
+  precisely because every town voted in the same contest, and it is the
+  standard way to state what a redrawn seat leans.
+
+There is no third row combining them, because for a House race there is nothing
+to combine: 29 of today's towns were voting in someone else's election.
+
 ### There is deliberately no vote-by-mail layer
 
 It is the obvious layer to build from this data and it would be a lie. Hunterdon
@@ -121,6 +144,45 @@ Sussex, Somerset and Morris fold every ballot into the district totals. A
 mail-share choropleth would draw a 22-point cliff at the county line that is
 paperwork, not behaviour. The filing table in the provenance panel carries it
 instead, and each town's panel says what its own county does.
+
+### `npm run audit`
+
+Internal consistency alone would never have caught the Lance/Malinowski error —
+every number in it was self-consistent. So the audit pins the three certified
+NJ-07 House results as literal expected values and fails the build if the
+pipeline stops reproducing them. Alongside that it checks that no town casts
+more votes than ballots, that town margins reconcile to the district, that
+every town on the map has results and vice versa, and that no candidate is
+filed under two different major parties.
+
+It found real bugs, and the notes it emits are worth reading:
+
+- **`Under Votes` and `Over Votes` were being counted as candidates.** Warren
+  files them on candidate rows; 4,336 phantom votes inside this district
+  inflated every denominator and read every real candidate's share low.
+- **Camden files party as a bare `D` / `R`**, which fell through the party
+  table into the slogan branch and came back *independent*, splitting Harris
+  and Trump statewide.
+- **Four counties print the whole ticket** — `Kamala D. Harris and Tim Walz` —
+  where the rest print the head of it, splitting one candidate in two.
+- **Two towns report more votes than ballots.** Fanwood is out by one, ordinary
+  clerical noise. Union's Winfield rows are scrambled: the vote totals sit
+  under labels reading "Overseas Ballots" while the district rows hold almost
+  nothing. Both are discrepancies in the certification rather than in this
+  build, so they are published in the provenance panel rather than rounded
+  away.
+
+### New Jersey has two parties and a great many slogans
+
+Only Democrats and Republicans appear on a New Jersey ballot as parties.
+Everyone else runs by petition under a slogan of their own choosing — `For the
+People`, `Make It Simple`, `Women of Power` — printed in the same column and
+emphatically not a party. A few of those slogans name a real party, and are
+read as it; the rest mean independent. Union's `NON` marker records how someone
+reached the ballot, not what they are, so it yields no party at all: party is
+settled once per race from every county that named one, and a county that names
+none must contribute nothing rather than a wrong answer that then competes for
+the majority.
 
 ### What is missing, and why
 

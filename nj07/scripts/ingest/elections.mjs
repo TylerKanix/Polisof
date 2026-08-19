@@ -17,7 +17,14 @@
  */
 import { fetchCached, csvToObjects, writeJSON, num, round, log } from '../lib/util.mjs';
 import { indexFromBoundaries, isTotalRow, voteMode, rescueMisspelling } from '../lib/munis.mjs';
-import { readOffice, readParty, properName, isWriteIn, candidateKey } from '../lib/offices.mjs';
+import {
+  readOffice,
+  readParty,
+  properName,
+  isWriteIn,
+  candidateKey,
+  isAdministrative,
+} from '../lib/offices.mjs';
 import { OPENELECTIONS, NJ_COUNTIES, ELECTIONS, BOUNDARIES } from '../lib/sources.mjs';
 
 const DISTRICT = '7';
@@ -65,7 +72,12 @@ function addVote(bucket, party, name, votes, mode) {
  */
 function settleCandidate(local, race) {
   const names = race?.names ?? local.names;
-  const parties = [...(race?.parties ?? local.parties)].sort((a, b) => b[1] - a[1]);
+  // `I` is what a slogan resolves to when it names no party, so a county that
+  // prints "Green Party" is better evidence than one that prints a slogan,
+  // however many votes the second one carries. Specific letters outrank it.
+  const parties = [...(race?.parties ?? local.parties)].sort(
+    (a, b) => (a[0] === 'I' ? 1 : 0) - (b[0] === 'I' ? 1 : 0) || b[1] - a[1],
+  );
   const name = [...names].sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)[0][0];
   return {
     name,
@@ -118,6 +130,7 @@ export async function run() {
   const unresolved = new Map();
   const codeReports = [];
   const corrections = [];
+  const dropped = new Map();
 
   const bucketFor = (geoid, election, office) => {
     if (!store.has(geoid)) store.set(geoid, new Map());
@@ -273,6 +286,15 @@ export async function run() {
           const h = houseByMuni.get(geoid);
           const key = `${election.id}:${district}`;
           h.set(key, (h.get(key) ?? 0) + votes);
+        }
+
+        // Ballot accounting is not a candidate. Dropped before it can reach a
+        // bucket, because inside one it would inflate the total and quietly
+        // deflate every real candidate's share.
+        if (isAdministrative(r.candidate)) {
+          const k = `${rowCounty} · ${String(r.candidate).trim()}`;
+          dropped.set(k, (dropped.get(k) ?? 0) + votes);
+          continue;
         }
 
         const name = properName(r.candidate);
@@ -433,7 +455,108 @@ export async function run() {
     delete c.modes;
   }
 
+  /**
+   * The district's own House race, as it was actually certified.
+   *
+   * This is a different question from every other row in the panel, and
+   * getting them confused is how a site ends up asserting that Leonard Lance
+   * beat Tom Malinowski in 2018. He did not — Malinowski won by five points.
+   *
+   * The rest of the panel answers "how did the *current* 94 towns vote", which
+   * is the right question for a statewide race, where every town voted in the
+   * same contest. For a House race it is incoherent: 29 of today's towns voted
+   * in a different district's election that year, so there is no NJ-07 result
+   * for today's territory. What there is, is the election that happened — over
+   * the towns that were in the district *then*, including the ones since
+   * drawn out of it. That is what this computes, and it reproduces the
+   * certified result for all three cycles.
+   */
+  function certifiedHouseRaces() {
+    const out = {};
+    const memberIds = new Set(members.map((m) => m.geoid));
+    for (const [geoid, byElection] of store) {
+      for (const [electionId, byOffice] of byElection) {
+        const bucket = byOffice.get(`ushouse:${DISTRICT}`);
+        if (!bucket) continue;
+        const race = (out[electionId] ??= {
+          total: 0,
+          cands: new Map(),
+          towns: 0,
+          townsStillInDistrict: 0,
+        });
+        race.towns++;
+        if (memberIds.has(geoid)) race.townsStillInDistrict++;
+        race.total += bucket.total;
+        for (const [candKey, c] of bucket.cands) {
+          const settled = settleCandidate(c, registry.get(`${electionId}/ushouse:${DISTRICT}`)?.get(candKey));
+          const e = (race.cands.get(candKey) ?? { name: settled.name, party: settled.party, votes: 0 });
+          e.party ??= settled.party;
+          e.votes += settled.votes;
+          race.cands.set(candKey, e);
+        }
+      }
+    }
+    // County-filed overseas and federal ballots belong to no town, but they
+    // are part of the certification, so the certified row carries them.
+    for (const u of unassigned) {
+      if (u.office !== 'ushouse' || u.district !== DISTRICT) continue;
+      const race = out[u.election];
+      if (!race) continue;
+      race.total += u.votes;
+      const k = candidateKey(u.candidate) || u.candidate;
+      const e = race.cands.get(k) ?? { name: u.candidate, party: u.party, votes: 0 };
+      e.party ??= u.party;
+      e.votes += u.votes;
+      race.cands.set(k, e);
+    }
+    return Object.fromEntries(
+      Object.entries(out).map(([k, r]) => [
+        k,
+        {
+          total: r.total,
+          towns: r.towns,
+          townsStillInDistrict: r.townsStillInDistrict,
+          cands: [...r.cands.values()].sort((a, b) => b.votes - a.votes),
+        },
+      ]),
+    );
+  }
+
+  /**
+   * Places where the certification does not add up.
+   *
+   * A town cannot cast more votes in one race than it cast ballots, and two
+   * do. These are discrepancies in the source, not in this pipeline, and the
+   * response is to publish them rather than round them away: Union County's
+   * Winfield rows are scrambled — the vote totals sit under labels reading
+   * "Overseas Ballots" while the district rows hold almost nothing — and
+   * Fanwood is out by a single vote, which is ordinary clerical noise.
+   */
+  const sourceAnomalies = [];
+  for (const m of municipalities) {
+    const t = m.turnout.g2024;
+    if (!t?.ballots) continue;
+    for (const [key, res] of Object.entries(m.results)) {
+      if (!key.startsWith('g2024') || res.total <= t.ballots) continue;
+      sourceAnomalies.push({
+        municipality: m.name,
+        county: m.county,
+        race: key,
+        votes: res.total,
+        ballots: t.ballots,
+        excess: res.total - t.ballots,
+      });
+    }
+  }
+  if (sourceAnomalies.length) {
+    log(
+      'elections',
+      `${sourceAnomalies.length} race(s) report more votes than ballots — carried as source anomalies`,
+    );
+  }
+
   const districtTotals = totalsFor(municipalities);
+  const certifiedHouse = certifiedHouseRaces();
 
   const payload = {
     meta: {
@@ -506,9 +629,12 @@ export async function run() {
         .slice(0, 40),
       abbreviationCodes: codeReports,
       voteModeFiling,
+      sourceAnomalies,
+      droppedRows: [...dropped].map(([row, votes]) => ({ row, votes })).sort((a, b) => b.votes - a.votes),
       spellingCorrections: corrections,
     },
     district: districtTotals,
+    certifiedHouse,
     municipalities,
     unassigned: unassigned.filter((u) => u.district === DISTRICT),
   };

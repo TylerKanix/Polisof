@@ -109,6 +109,63 @@ export default function Provenance({
             </p>
           </section>
 
+          {meta.sourceAnomalies?.length ? (
+            <section>
+              <SectionTitle>Where the certification does not add up</SectionTitle>
+              <p className="mb-2 text-[11px] leading-relaxed text-ink-3">
+                A town cannot cast more votes in a race than it cast ballots. These do. The
+                discrepancy is in the source rather than in this build, so it is published rather
+                than rounded away — Union County's Winfield rows are scrambled, with the vote
+                totals filed under labels reading "Overseas Ballots" while the district rows hold
+                almost nothing.
+              </p>
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr className="border-b border-hairline text-[10px] uppercase tracking-wider text-ink-3">
+                    <th className="py-1 text-left font-medium">Municipality</th>
+                    <th className="py-1 text-left font-medium">Race</th>
+                    <th className="py-1 text-right font-medium">Votes</th>
+                    <th className="py-1 text-right font-medium">Ballots</th>
+                    <th className="py-1 text-right font-medium">Excess</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {meta.sourceAnomalies.map((a, i) => (
+                    <tr key={i} className="border-b border-hairline/60">
+                      <td className="py-1.5 text-ink-2">{a.municipality}</td>
+                      <td className="py-1.5 font-mono text-[10px] text-ink-3">{a.race}</td>
+                      <td className="py-1.5 text-right font-mono text-ink-3">
+                        {a.votes.toLocaleString('en-US')}
+                      </td>
+                      <td className="py-1.5 text-right font-mono text-ink-3">
+                        {a.ballots.toLocaleString('en-US')}
+                      </td>
+                      <td className="py-1.5 text-right font-mono text-amber-400/90">+{a.excess}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
+
+          <section>
+            <SectionTitle>Rows that are not candidates</SectionTitle>
+            <p className="text-[11px] leading-relaxed text-ink-3">
+              Some counties file ballot accounting on the same rows as people. Counted as a
+              candidate, an <em>Under Votes</em> line inflates the denominator and quietly deflates
+              every real candidate's share, so these are dropped before they reach a total —
+              {meta.droppedRows?.length
+                ? ` ${meta.droppedRows.reduce((a, r) => a + r.votes, 0).toLocaleString('en-US')} of them, from ${meta.droppedRows.map((r) => r.row).join('; ')}.`
+                : ' none appeared in this build.'}
+            </p>
+            <p className="mt-1.5 text-[11px] leading-relaxed text-ink-3">
+              Four counties also print the whole ticket — <em>Kamala D. Harris and Tim Walz</em> —
+              where the rest print only the head of it. The running mate is dropped so a
+              presidential row counts the same person in every county; left alone it split one
+              candidate's vote in two.
+            </p>
+          </section>
+
           <section>
             <SectionTitle>Known gaps</SectionTitle>
             <div className="space-y-2">

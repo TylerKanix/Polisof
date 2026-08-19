@@ -1,5 +1,5 @@
 /** The masthead: who is running, how long is left, and how stale the roster is. */
-import { HOUSE_24, districtSummary } from '../lib/analysis';
+import { certifiedHouse } from '../lib/analysis';
 import { daysUntil, shortDate } from '../lib/format';
 import { PARTY, partyOf } from '../lib/palette';
 import { useUI } from '../lib/store';
@@ -10,7 +10,7 @@ export default function Header({ district, race }: { district: DistrictFile; rac
   const { setPalette, setProvenance, select } = useUI();
   const r = race.race;
   const days = daysUntil(r.electionDay);
-  const last = districtSummary(district, HOUSE_24);
+  const last = certifiedHouse(district, 'g2024');
 
   return (
     <header className="z-30 flex h-[52px] shrink-0 items-center gap-3 border-b border-hairline bg-plane px-3 sm:gap-4 sm:px-4">
@@ -55,7 +55,7 @@ export default function Header({ district, race }: { district: DistrictFile; rac
         {last ? (
           <span
             className="hidden font-mono text-[11px] tabular-nums text-ink-3 lg:inline"
-            title={`Certified 2024 result across the ${last.municipalities} municipalities that voted on a NJ-07 ballot`}
+            title={`Certified 2024 result: ${last.winner?.name ?? ''} over ${last.runnerUp?.name ?? ''}, across ${last.towns} municipalities`}
           >
             2024:{' '}
             <span style={{ color: last.net > 0 ? PARTY.R.bright : PARTY.D.bright }}>

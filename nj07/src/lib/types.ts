@@ -59,6 +59,14 @@ export interface ElectionMeta {
   level: 'precinct' | 'municipal';
 }
 
+/** The district's own House race as certified, over the towns it had then. */
+export interface CertifiedRace {
+  total: number;
+  towns: number;
+  townsStillInDistrict: number;
+  cands: { name: string; party: PartyLetter | null; votes: number }[];
+}
+
 export interface DistrictFile {
   meta: {
     state: string;
@@ -77,6 +85,15 @@ export interface DistrictFile {
     districtUnassigned: { votes: number; rows: number; places: string[] };
     unresolvedRows: { row: string; votes: number }[];
     abbreviationCodes: { county: string; resolved: number; unresolved: string[] }[];
+    droppedRows: { row: string; votes: number }[];
+    sourceAnomalies: {
+      municipality: string;
+      county: string;
+      race: string;
+      votes: number;
+      ballots: number;
+      excess: number;
+    }[];
     voteModeFiling: Record<
       string,
       { total: number; separates: string[]; shares: Record<string, number> }
@@ -90,6 +107,8 @@ export interface DistrictFile {
     }[];
   };
   district: Record<string, DistrictTotal>;
+  /** Keyed by election id, e.g. `g2018`. */
+  certifiedHouse: Record<string, CertifiedRace>;
   municipalities: Municipality[];
   unassigned: unknown[];
 }

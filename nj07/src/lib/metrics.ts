@@ -129,7 +129,9 @@ export const METRICS: Metric[] = [
     format: (v) => (v === null ? DASH : `${v > 0 ? 'R+' : 'D+'}${int(Math.abs(v))}`),
     span: 6000,
     poles: ['for Altman', 'for Kean'],
-    note: 'These sum, exactly, to the district’s 2024 margin.',
+    note:
+      'These sum across the 94 towns to the district’s 2024 margin, bar the few hundred ' +
+      'overseas and federal ballots the counties file without a town.',
   },
   {
     id: 'turnout24',

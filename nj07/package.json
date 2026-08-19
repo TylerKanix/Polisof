@@ -13,6 +13,7 @@
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false",
     "data": "node scripts/build-data.mjs",
+    "audit": "node scripts/audit.mjs",
     "data:geo": "node scripts/ingest/geo.mjs",
     "data:elections": "node scripts/ingest/elections.mjs",
     "standalone": "npm run build && node scripts/build-standalone.mjs"

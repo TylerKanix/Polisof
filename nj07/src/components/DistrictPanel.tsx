@@ -1,12 +1,11 @@
 /** The district dossier — what is on the ballot, and what the ground looks like. */
 import {
-  HOUSE_16,
-  HOUSE_18,
   HOUSE_24,
   PRES_16,
   PRES_24,
   SEN_18,
   SEN_24,
+  certifiedHouse,
   decisive,
   districtSummary,
   districtTurnout,
@@ -20,14 +19,23 @@ import { useUI } from '../lib/store';
 import type { DistrictFile, RaceFile } from '../lib/types';
 import { Chip, MarginBar, Monogram, ResultRow, SectionTitle, Stat, Unreported } from './primitives';
 
+/** The seat's own elections, reported as they were certified. */
+const HOUSE_CYCLES = [
+  { id: 'g2024', label: '2024 U.S. House' },
+  { id: 'g2018', label: '2018 U.S. House' },
+  { id: 'g2016', label: '2016 U.S. House' },
+];
+
+/**
+ * Statewide races, restricted to the district's current 94 towns. Every town
+ * voted in the same contest, so this is a coherent question and the standard
+ * way to state what a redrawn district leans.
+ */
 const BASELINES = [
-  { key: HOUSE_24, label: '2024 U.S. House', sub: 'These lines, last time out' },
   { key: PRES_24, label: '2024 President', sub: 'The baseline underneath' },
   { key: SEN_24, label: '2024 U.S. Senate', sub: 'Kim won the state, not this seat' },
-  { key: PRES_16, label: '2016 President', sub: 'Same towns, eight years back' },
   { key: SEN_18, label: '2018 U.S. Senate', sub: 'A Democratic midterm' },
-  { key: HOUSE_18, label: '2018 U.S. House', sub: 'Old lines — see below' },
-  { key: HOUSE_16, label: '2016 U.S. House', sub: 'Old lines — see below' },
+  { key: PRES_16, label: '2016 President', sub: 'Same towns, eight years back' },
 ];
 
 export default function DistrictPanel({
@@ -152,9 +160,59 @@ export default function DistrictPanel({
         </div>
       </section>
 
-      {/* ---- What the district has actually done -------------------------- */}
+      {/* ---- The seat's own elections ------------------------------------- */}
       <section className="border-b border-hairline px-4 py-3">
-        <SectionTitle>Certified baselines</SectionTitle>
+        <SectionTitle right={<span className="text-[10px] text-ink-3">as certified</span>}>
+          This seat's elections
+        </SectionTitle>
+        <div className="space-y-3">
+          {HOUSE_CYCLES.map(({ id, label }) => {
+            const c = certifiedHouse(district, id);
+            if (!c) return null;
+            return (
+              <div key={id}>
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-[11px] font-medium text-ink-2">{label}</span>
+                  <span
+                    className="font-mono text-[12px] tabular-nums"
+                    style={{ color: c.net > 0 ? PARTY.R.bright : PARTY.D.bright }}
+                  >
+                    {c.net > 0 ? 'R+' : 'D+'}
+                    {Math.abs(c.margin).toFixed(1)}
+                  </span>
+                </div>
+                <div className="my-1">
+                  <MarginBar margin={c.margin} height={5} />
+                </div>
+                <ResultRow cands={c.cands} total={c.total} />
+                <div className="mt-0.5 flex items-baseline justify-between gap-2 text-[9px] text-ink-3">
+                  <span>
+                    {c.winner ? `${c.winner.name} won` : ''}
+                  </span>
+                  <span>
+                    {c.linesChanged
+                      ? `${c.towns} towns then · ${c.townsStillInDistrict} still in the district`
+                      : `${c.towns} towns`}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-2.5 text-[10px] leading-snug text-ink-3">
+          These are the elections themselves, over the towns the district held at the time —
+          including the ones since drawn out of it. They match the certified result. The 2021 map
+          moved a third of this seat, so the earlier two describe a different electorate from the
+          rows below, and there is no honest way to state a past NJ-07 result for today's
+          territory: 29 of today's towns were voting in someone else's race.
+        </p>
+      </section>
+
+      {/* ---- The current lines, in earlier elections ----------------------- */}
+      <section className="border-b border-hairline px-4 py-3">
+        <SectionTitle right={<span className="text-[10px] text-ink-3">today's 94 towns</span>}>
+          Current lines, earlier elections
+        </SectionTitle>
         <div className="space-y-3">
           {BASELINES.map(({ key, label, sub }) => {
             const s = districtSummary(district, key);
@@ -187,9 +245,10 @@ export default function DistrictPanel({
           })}
         </div>
         <p className="mt-2.5 text-[10px] leading-snug text-ink-3">
-          Rows marked <em>prorated</em> include the four towns that straddle a district line; their
-          presidential vote is scaled by the share of their House vote cast on a NJ-07 ballot. That
-          is an estimate. House rows need no scaling — a NJ-07 ballot is a NJ-07 ballot.
+          Statewide races only, which is what makes this a fair question — every town voted in the
+          same contest, so summing today's 94 gives the lean of the seat as drawn. Rows marked{' '}
+          <em>prorated</em> include the four towns that straddle a district line; their vote is
+          scaled by the share of their House vote cast on a NJ-07 ballot, which is an estimate.
         </p>
       </section>
 
@@ -273,8 +332,10 @@ export default function DistrictPanel({
         </div>
         <p className="mt-2 text-[10px] leading-snug text-ink-3">
           Net votes, not margin: a 40-point town of four thousand people moves fewer votes than a
-          six-point town of thirty thousand. These figures sum, across all{' '}
-          {district.meta.membership.municipalities} towns, to the district's 2024 margin.
+          six-point town of thirty thousand. These sum, across all{' '}
+          {district.meta.membership.municipalities} towns, to the district's 2024 margin — bar the{' '}
+          {district.meta.districtUnassigned.votes} overseas and federal ballots the counties file
+          without a town.
         </p>
       </section>
 
