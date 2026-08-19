@@ -67,17 +67,22 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-void text-ink">
+    <div className="flex h-dvh flex-col overflow-hidden bg-void text-ink">
       <Header district={district.data} race={race.data} />
 
-      <div className="flex min-h-0 flex-1">
+      {/*
+        Three columns on a desktop; below that the ranked rail folds away —
+        ⌘K and the map both still reach every town — and the dossier stacks
+        under the map so the page scrolls down rather than sideways.
+      */}
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
         <TownRail municipalities={district.data.municipalities} />
 
-        <main className="relative min-w-0 flex-1 bg-plane">
+        <main className="relative min-h-[62vh] w-full shrink-0 bg-plane lg:min-h-0 lg:w-auto lg:flex-1">
           <MapPane topo={topo.data} municipalities={district.data.municipalities} />
         </main>
 
-        <aside className="flex w-[412px] shrink-0 border-l border-hairline bg-plane">
+        <aside className="flex w-full shrink-0 border-t border-hairline bg-plane lg:w-[412px] lg:border-l lg:border-t-0">
           {selectedMuni ? (
             <TownPanel muni={selectedMuni} district={district.data} />
           ) : (

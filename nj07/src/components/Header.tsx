@@ -13,10 +13,10 @@ export default function Header({ district, race }: { district: DistrictFile; rac
   const last = districtSummary(district, HOUSE_24);
 
   return (
-    <header className="z-30 flex h-[52px] shrink-0 items-center gap-4 border-b border-hairline bg-plane px-4">
+    <header className="z-30 flex h-[52px] shrink-0 items-center gap-3 border-b border-hairline bg-plane px-3 sm:gap-4 sm:px-4">
       <button
         onClick={() => select(null)}
-        className="flex items-baseline gap-2 text-left"
+        className="flex shrink-0 items-baseline gap-2 whitespace-nowrap text-left"
         title="Back to the district"
       >
         <span className="font-mono text-[13px] font-semibold tracking-[0.24em] text-ink">
@@ -51,7 +51,7 @@ export default function Header({ district, race }: { district: DistrictFile; rac
         </a>
       </div>
 
-      <div className="ml-auto flex items-center gap-3">
+      <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
         {last ? (
           <span
             className="hidden font-mono text-[11px] tabular-nums text-ink-3 lg:inline"
@@ -65,25 +65,29 @@ export default function Header({ district, race }: { district: DistrictFile; rac
         ) : null}
 
         <span
-          className="font-mono text-[11px] tabular-nums text-ink-2"
+          className="hidden whitespace-nowrap font-mono text-[11px] tabular-nums text-ink-2 sm:inline"
           title={`Election day ${shortDate(r.electionDay)}`}
         >
           {days > 0 ? `${days} days out` : days === 0 ? 'Election day' : 'Election past'}
         </span>
 
-        <Chip tone="warn" title="The candidate roster is hand-authored; certified returns are not">
-          roster {race.meta.verifiedThrough}
-        </Chip>
+        <span className="hidden whitespace-nowrap sm:inline">
+          <Chip tone="warn" title="The candidate roster is hand-authored; certified returns are not">
+            roster {race.meta.verifiedThrough}
+          </Chip>
+        </span>
 
         <button
           onClick={() => setPalette(true)}
-          className="rounded border border-hairline bg-white/5 px-2 py-1 font-mono text-[10px] text-ink-3 hover:text-ink"
+          title="Search every municipality and map layer"
+          className="whitespace-nowrap rounded border border-hairline bg-white/5 px-2 py-1 font-mono text-[10px] text-ink-3 hover:text-ink"
         >
-          ⌘K
+          <span className="hidden sm:inline">⌘K</span>
+          <span className="sm:hidden">Search</span>
         </button>
         <button
           onClick={() => setProvenance(true)}
-          className="rounded border border-hairline bg-white/5 px-2 py-1 text-[11px] text-ink-2 hover:text-ink"
+          className="whitespace-nowrap rounded border border-hairline bg-white/5 px-2 py-1 text-[11px] text-ink-2 hover:text-ink"
         >
           Sources
         </button>

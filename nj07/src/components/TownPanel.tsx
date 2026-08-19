@@ -58,7 +58,7 @@ export default function TownPanel({
   const modes = muni.results[PRES_24]?.byMode ?? {};
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto">
+    <div className="flex w-full flex-col lg:h-full lg:overflow-y-auto">
       <div className="sticky top-0 z-10 border-b border-hairline bg-plane px-4 py-3">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">

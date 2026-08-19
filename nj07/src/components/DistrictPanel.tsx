@@ -48,7 +48,7 @@ export default function DistrictPanel({
   const pres24 = districtSummary(district, PRES_24);
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto">
+    <div className="flex w-full flex-col lg:h-full lg:overflow-y-auto">
       <div className="border-b border-hairline px-4 py-3">
         <div className="flex items-baseline justify-between gap-2">
           <h2 className="text-[15px] font-semibold text-ink">New Jersey's 7th</h2>

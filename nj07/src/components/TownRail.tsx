@@ -29,7 +29,7 @@ export default function TownRail({ municipalities }: { municipalities: Municipal
   }, [municipalities, metric, sort]);
 
   return (
-    <aside className="flex w-[248px] shrink-0 flex-col border-r border-hairline bg-plane">
+    <aside className="hidden w-[248px] shrink-0 flex-col border-r border-hairline bg-plane lg:flex">
       <div className="flex items-center gap-1 border-b border-hairline px-2 py-1.5">
         {(['metric', 'size', 'name'] as const).map((s) => (
           <button

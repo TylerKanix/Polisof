@@ -22,7 +22,7 @@ export default function LayerControls({ municipalities }: { municipalities: Muni
   }, []);
 
   return (
-    <div className="pointer-events-none absolute bottom-4 left-4 z-20 w-[292px]">
+    <div className="pointer-events-none absolute bottom-3 left-3 z-20 w-[248px] sm:bottom-4 sm:left-4 sm:w-[292px]">
       <div className="pointer-events-auto overflow-hidden rounded-lg border border-hairline bg-surface/95 shadow-lift backdrop-blur">
         <button
           onClick={() => setOpen((v) => !v)}
