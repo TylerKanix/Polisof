@@ -1,6 +1,6 @@
 /** Dataset loading. Every file is fetched once and memoised. */
 import { useEffect, useState } from 'react';
-import type { DistrictFile, Frame, Manifest, RaceFile } from './types';
+import type { CountyReturnsFile, DistrictFile, Frame, Manifest, RaceFile } from './types';
 
 const BASE = `${import.meta.env.BASE_URL ?? '/'}data`;
 const cache = new Map<string, Promise<unknown>>();
@@ -31,6 +31,7 @@ export const loadDistrict = () => loadJSON<DistrictFile>('district.json');
 export const loadRace = () => loadJSON<RaceFile>('race.json');
 export const loadFrame = () => loadJSON<Frame>('geo/frame.json');
 export const loadManifest = () => loadJSON<Manifest>('manifest.json');
+export const loadCountyReturns = () => loadJSON<CountyReturnsFile>('county-returns.json');
 // TopoJSON is typed loosely; topojson-client validates the shape on use.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const loadTopo = () => loadJSON<any>('geo/munis.json');

@@ -176,6 +176,45 @@ mail-share choropleth would draw a 22-point cliff at the county line that is
 paperwork, not behaviour. The filing table in the provenance panel carries it
 instead, and each town's panel says what its own county does.
 
+### Checked against a county's own certification
+
+The returns here come from OpenElections, a volunteer transcription of county
+paperwork — a dependency worth testing rather than trusting. Hunterdon County
+publishes its own certified by-district report, which makes it testable:
+
+**156 figures checked, 0 differences.** All 26 Hunterdon municipalities, both
+major parties, across president, U.S. Senate and U.S. House in 2024, against
+`OFFICIAL RESULTS G2024 BY DISTRICT` (Hunterdon County Clerk, certified
+2025-02-03). The transcription this build depends on reproduces the county's
+own certification exactly.
+
+### Races with no municipal transcription
+
+Two races matter to this district and exist nowhere as municipal data: the 2025
+governor's race and the 2022 Kean–Malinowski House race. The counties do
+publish certified PDFs, so where one has been read its figures are carried at
+the resolution the document actually provides — the county, not the town:
+
+| | | |
+|---|---|---|
+| **2025 Governor** | Hunterdon | Ciattarelli 34,683 · Sherrill 31,663 — **R+4.6** |
+| **2022 U.S. House** | Hunterdon | Kean 32,678 · Malinowski 27,657 — **R+8.3** |
+
+A county total cannot be drawn on a map of municipalities and is never summed
+into a district figure that is a sum of towns, so these sit in their own
+section, labelled with the share of the district that county represents (26 of
+94). Every figure carries its ballot-mode breakdown, and that is a checksum
+rather than a detail: the modes must sum to each candidate's total and the
+candidates to the contest total, both enforced by `npm run audit`, so a
+mistyped digit fails the build instead of reaching a panel.
+
+Two files would close both gaps, and neither host answers this build's network:
+
+- `nj.gov/…/2022/2022-general-election-results-hor-07.pdf` — the whole 2022
+  NJ-07 race, every municipality, in one file.
+- `nj.gov/…/2025/2025-official-general-results-governor-{county}.pdf` — six
+  files, one per county, and the 2025 map layer turns on.
+
 ### `npm run audit`
 
 Internal consistency alone would never have caught the Lance/Malinowski error —

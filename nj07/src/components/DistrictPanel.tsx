@@ -16,7 +16,7 @@ import { DASH, int, pct, shortDate, signedPct } from '../lib/format';
 import { PARTY } from '../lib/palette';
 import { shortNames } from '../lib/names';
 import { useUI } from '../lib/store';
-import type { DistrictFile, RaceFile } from '../lib/types';
+import type { CountyReturnsFile, DistrictFile, RaceFile } from '../lib/types';
 import { Chip, MarginBar, Monogram, ResultRow, SectionTitle, Stat, Unreported } from './primitives';
 
 /** The seat's own elections, reported as they were certified. */
@@ -73,9 +73,11 @@ function baselinesOf(district: DistrictFile) {
 export default function DistrictPanel({
   district,
   race,
+  counties,
 }: {
   district: DistrictFile;
   race: RaceFile;
+  counties: CountyReturnsFile | null;
 }) {
   const r = race.race;
   const { select } = useUI();
@@ -371,6 +373,95 @@ export default function DistrictPanel({
           without a town.
         </p>
       </section>
+
+      {/* ---- Certified county returns -------------------------------------- */}
+      {counties?.returns?.length ? (
+        <section className="border-b border-hairline px-4 py-3">
+          <SectionTitle right={<span className="text-[10px] text-ink-3">county clerk PDFs</span>}>
+            Races with no municipal data
+          </SectionTitle>
+          <p className="mb-2.5 text-[10px] leading-snug text-ink-3">
+            Neither of these races is transcribed by municipality anywhere this build can reach, so
+            they cannot be drawn on the map or summed into the district. What does exist is the
+            counties' own certified paperwork. Each figure below is one county's result at the
+            resolution its Statement of Vote actually provides.
+          </p>
+          <div className="space-y-3">
+            {counties.returns.map((r) => {
+              const towns = district.municipalities.filter((m) => m.county === r.county).length;
+              const d = r.candidates.find((c) => c.party === 'D');
+              const rep = r.candidates.find((c) => c.party === 'R');
+              const margin =
+                d && rep ? ((rep.total - d.total) / (rep.total + d.total)) * 100 : null;
+              return (
+                <div key={`${r.county}-${r.election}-${r.office}`}>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="text-[11px] font-medium text-ink-2">
+                      {r.label}
+                      <span className="ml-1.5 text-[10px] text-ink-3">{r.county} County</span>
+                    </span>
+                    <span
+                      className="font-mono text-[12px] tabular-nums"
+                      style={{
+                        color:
+                          margin === null
+                            ? undefined
+                            : margin > 0
+                              ? PARTY.R.bright
+                              : PARTY.D.bright,
+                      }}
+                    >
+                      {margin === null
+                        ? DASH
+                        : `${margin > 0 ? 'R+' : 'D+'}${Math.abs(margin).toFixed(1)}`}
+                    </span>
+                  </div>
+                  <div className="my-1">
+                    <MarginBar margin={margin} height={5} />
+                  </div>
+                  <ResultRow
+                    cands={r.candidates.map((c) => ({
+                      name: c.name,
+                      party: c.party,
+                      votes: c.total,
+                    }))}
+                    total={r.contestTotal}
+                  />
+                  <div className="mt-0.5 flex items-baseline justify-between gap-2 text-[9px] text-ink-3">
+                    <span>{r.source.publisher}, certified {r.source.certified}</span>
+                    <span>
+                      {towns} of {district.meta.membership.municipalities} district towns
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {counties.wanted?.length ? (
+            <div className="mt-3 rounded border border-dashed border-hairline p-3">
+              <div className="text-[10px] uppercase tracking-[0.13em] text-ink-3">
+                What would close these
+              </div>
+              <div className="mt-1.5 space-y-2">
+                {counties.wanted.map((w) => (
+                  <div key={w.url}>
+                    <div className="text-[11px] leading-snug text-ink-2">{w.what}</div>
+                    <div className="text-[10px] leading-snug text-ink-3">{w.unlocks}</div>
+                    <div className="mt-0.5 break-all font-mono text-[9px] text-ink-3/70">
+                      {w.url}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-2 text-[10px] leading-snug text-ink-3">
+                Every one of those hosts refuses this build's network, so they are named for a
+                person to fetch rather than fetched.
+              </p>
+            </div>
+          ) : null}
+        </section>
+      ) : null}
 
       {/* ---- The lines moved ---------------------------------------------- */}
       <section className="border-b border-hairline px-4 py-3">

@@ -177,3 +177,42 @@ export interface Manifest {
     vintage: string;
   }[];
 }
+
+export interface CountyReturn {
+  county: string;
+  election: string;
+  date: string;
+  office: string;
+  district?: number;
+  label: string;
+  modes: string[];
+  contestTotal: number;
+  candidates: {
+    name: string;
+    party: PartyLetter | null;
+    total: number;
+    byMode: number[];
+  }[];
+  source: { title: string; publisher: string; certified: string; note: string };
+}
+
+export interface CountyReturnsFile {
+  meta: { generatedAt: string; note: string };
+  returns: CountyReturn[];
+  verifications: {
+    id: string;
+    what: string;
+    against: string;
+    figuresChecked: number;
+    differences: number;
+    note: string;
+  }[];
+  primary2026: {
+    county: string;
+    date: string;
+    contestTotal: number;
+    candidates: { name: string; votes: number }[];
+    source: { title: string; publisher: string; certified: string; note: string };
+  };
+  wanted: { what: string; url: string; unlocks: string }[];
+}

@@ -6,7 +6,15 @@ import MapPane from './components/MapPane';
 import Provenance from './components/Provenance';
 import TownPanel from './components/TownPanel';
 import TownRail from './components/TownRail';
-import { loadDistrict, loadFrame, loadManifest, loadRace, loadTopo, useAsync } from './lib/data';
+import {
+  loadCountyReturns,
+  loadDistrict,
+  loadFrame,
+  loadManifest,
+  loadRace,
+  loadTopo,
+  useAsync,
+} from './lib/data';
 import { useUI } from './lib/store';
 
 export default function App() {
@@ -15,6 +23,7 @@ export default function App() {
   const topo = useAsync('topo', loadTopo);
   const frame = useAsync('frame', loadFrame);
   const manifest = useAsync('manifest', loadManifest);
+  const counties = useAsync('county-returns', loadCountyReturns);
 
   const { selected, select } = useUI();
 
@@ -86,7 +95,7 @@ export default function App() {
           {selectedMuni ? (
             <TownPanel muni={selectedMuni} district={district.data} />
           ) : (
-            <DistrictPanel district={district.data} race={race.data} />
+            <DistrictPanel district={district.data} race={race.data} counties={counties.data} />
           )}
         </aside>
       </div>
@@ -97,6 +106,7 @@ export default function App() {
         district={district.data}
         race={race.data}
         frame={frame.data}
+        counties={counties.data}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 /** Where every number came from, and what is knowingly missing. */
 import { useUI } from '../lib/store';
-import type { DistrictFile, Frame, Manifest, RaceFile } from '../lib/types';
+import type { CountyReturnsFile, DistrictFile, Frame, Manifest, RaceFile } from '../lib/types';
 import { SectionTitle } from './primitives';
 
 export default function Provenance({
@@ -8,11 +8,13 @@ export default function Provenance({
   district,
   race,
   frame,
+  counties,
 }: {
   manifest: Manifest | null;
   district: DistrictFile;
   race: RaceFile;
   frame: Frame | null;
+  counties: CountyReturnsFile | null;
 }) {
   const { provenanceOpen, setProvenance } = useUI();
   if (!provenanceOpen) return null;
@@ -58,6 +60,32 @@ export default function Provenance({
               </tbody>
             </table>
           </section>
+
+          {counties?.verifications?.length ? (
+            <section>
+              <SectionTitle>Checked against an official certification</SectionTitle>
+              <p className="mb-2 text-[11px] leading-relaxed text-ink-3">
+                The returns here come from OpenElections, a volunteer transcription of county
+                paperwork — a dependency worth testing rather than trusting. Hunterdon publishes its
+                own by-district certification, which makes it testable.
+              </p>
+              {counties.verifications.map((v) => (
+                <div key={v.id} className="rounded border border-hairline bg-white/[0.02] p-3">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="text-[12px] font-medium text-ink">{v.what}</span>
+                    <span
+                      className="shrink-0 font-mono text-[11px]"
+                      style={{ color: v.differences === 0 ? '#199e70' : '#eda100' }}
+                    >
+                      {v.figuresChecked} checked · {v.differences} differ
+                    </span>
+                  </div>
+                  <div className="mt-0.5 text-[11px] text-ink-2">{v.against}</div>
+                  <p className="mt-1 text-[10px] leading-snug text-ink-3">{v.note}</p>
+                </div>
+              ))}
+            </section>
+          ) : null}
 
           <section>
             <SectionTitle>Datasets</SectionTitle>

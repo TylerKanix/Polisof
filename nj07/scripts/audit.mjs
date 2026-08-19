@@ -15,6 +15,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { OUT, log } from './lib/util.mjs';
+import { COUNTY_RETURNS, PRIMARY_2026 } from './lib/county-returns.mjs';
 
 /**
  * Certified NJ-07 results, from the official canvass. If the build stops
@@ -67,6 +68,41 @@ export async function run() {
     check(
       Math.abs(tp.margin - want.margin) < 0.05,
       `${id}: margin ${tp.margin.toFixed(2)}, certified ${want.margin}`,
+    );
+  }
+
+  // ---- Hand-transcribed county returns -------------------------------------
+  // These are typed from a PDF, which is the one place in this project where a
+  // digit can go wrong silently. The ballot-mode columns exist to stop that:
+  // modes must sum to each candidate's total, and candidates to the contest
+  // total. A typo fails here rather than reaching a panel.
+  for (const r of COUNTY_RETURNS) {
+    let sum = 0;
+    for (const c of r.candidates) {
+      const modes = c.byMode.reduce((a, b) => a + b, 0);
+      check(
+        modes === c.total,
+        `${r.county} ${r.label}: ${c.name} modes sum to ${modes}, total says ${c.total}`,
+      );
+      check(
+        c.byMode.length === r.modes.length,
+        `${r.county} ${r.label}: ${c.name} has ${c.byMode.length} mode figures for ${r.modes.length} modes`,
+      );
+      sum += c.total;
+    }
+    check(
+      sum === r.contestTotal,
+      `${r.county} ${r.label}: candidates sum to ${sum}, contest total says ${r.contestTotal}`,
+    );
+  }
+  {
+    const sum = PRIMARY_2026.candidates.reduce((a, c) => a + c.votes, 0);
+    check(
+      sum <= PRIMARY_2026.contestTotal,
+      `2026 primary: candidates sum to ${sum}, above the contest total ${PRIMARY_2026.contestTotal}`,
+    );
+    note(
+      `2026 primary (${PRIMARY_2026.county}): ${PRIMARY_2026.contestTotal - sum} ballots left the contest blank`,
     );
   }
 

@@ -2,6 +2,7 @@
 import { writeJSON, log } from '../lib/util.mjs';
 import { RACE, VERIFIED_THROUGH } from '../lib/roster.mjs';
 import { MANIFEST_SOURCES } from '../lib/sources.mjs';
+import { COUNTY_RETURNS, PRIMARY_2026, WANTED, VERIFICATIONS } from '../lib/county-returns.mjs';
 
 export async function run() {
   await writeJSON(
@@ -20,6 +21,26 @@ export async function run() {
     { pretty: true },
   );
 
+  // Certified figures read from county-clerk PDFs. Kept in their own file
+  // because they are county-resolution and must never be summed into a
+  // district figure that is a sum of municipalities.
+  await writeJSON(
+    'county-returns.json',
+    {
+      meta: {
+        generatedAt: new Date().toISOString().slice(0, 10),
+        note:
+          'Transcribed from official county-clerk PDFs. County-level unless stated. ' +
+          'Ballot-mode figures are carried as a checksum and verified by npm run audit.',
+      },
+      returns: COUNTY_RETURNS,
+      verifications: VERIFICATIONS,
+      primary2026: PRIMARY_2026,
+      wanted: WANTED,
+    },
+    { pretty: true },
+  );
+
   await writeJSON(
     'manifest.json',
     {
@@ -29,7 +50,11 @@ export async function run() {
     { pretty: true },
   );
 
-  log('race', `${RACE.candidates.length} candidates, verified through ${VERIFIED_THROUGH}`);
+  log(
+    'race',
+    `${RACE.candidates.length} candidates, verified through ${VERIFIED_THROUGH}; ` +
+      `${COUNTY_RETURNS.length} county returns transcribed`,
+  );
   return { candidates: RACE.candidates.length };
 }
 
