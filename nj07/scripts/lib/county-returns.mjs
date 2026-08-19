@@ -43,6 +43,33 @@ export const COUNTY_RETURNS = [
     },
   },
   {
+    county: 'Warren',
+    election: 'g2025',
+    date: '2025-11-04',
+    office: 'governor',
+    label: '2025 Governor',
+    // Warren orders its columns differently from Hunterdon, which is exactly
+    // why each return carries its own mode list rather than a shared one.
+    modes: ['electionDay', 'mail', 'provisional', 'early'],
+    contestTotal: 45579,
+    /** The clerk also reports the ballots that recorded no valid vote. */
+    overvotes: 46,
+    undervotes: 175,
+    candidates: [
+      { name: 'Jack Ciattarelli', party: 'R', total: 25980, byMode: [16332, 2696, 177, 6775] },
+      { name: 'Mikie Sherrill', party: 'D', total: 19199, byMode: [9169, 5209, 315, 4506] },
+      { name: 'Vic Kaplan', party: 'I', total: 224, byMode: [146, 35, 5, 38] },
+      { name: 'Joanne S. Kuniansky', party: 'S', total: 102, byMode: [76, 12, 2, 12] },
+      { name: 'Write-in', party: null, total: 74, byMode: [40, 25, 0, 9] },
+    ],
+    source: {
+      title: 'Official Summary Results Report — Warren County 2025 General Election',
+      publisher: 'Warren County Clerk',
+      certified: '2025-11-17',
+      note: 'County summary. No municipal breakdown of the governor’s race in this document.',
+    },
+  },
+  {
     county: 'Hunterdon',
     election: 'g2022',
     date: '2022-11-08',
@@ -117,8 +144,10 @@ export const WANTED = [
     what: '2025 Governor by municipality — one file per county',
     url: 'https://www.nj.gov/state/elections/assets/pdf/election-results/2025/2025-official-general-results-governor-{county}.pdf',
     unlocks:
-      'The 2025 map layer. Needs all six: hunterdon, warren, sussex, somerset, union, morris. ' +
-      'Morris also publishes its own at morriscountyclerk.org/…/2025-general-municipality-report-official-111725.pdf',
+      'The 2025 map layer. Hunterdon and Warren are in at county level; the four still ' +
+      'missing are sussex, somerset, union and morris — and all six are needed at ' +
+      '*municipal* resolution, which the county summaries do not carry. Morris publishes ' +
+      'exactly that at morriscountyclerk.org/…/2025-general-municipality-report-official-111725.pdf',
   },
 ];
 

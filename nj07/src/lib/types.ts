@@ -187,6 +187,8 @@ export interface CountyReturn {
   label: string;
   modes: string[];
   contestTotal: number;
+  overvotes?: number;
+  undervotes?: number;
   candidates: {
     name: string;
     party: PartyLetter | null;

@@ -386,6 +386,30 @@ export default function DistrictPanel({
             counties' own certified paperwork. Each figure below is one county's result at the
             resolution its Statement of Vote actually provides.
           </p>
+          {(() => {
+            // How much of the district these county figures actually cover.
+            // Stated because two counties of six is not a district result, and
+            // the arithmetic to combine them would look like one.
+            const gov = counties.returns.filter((r) => r.office === 'governor');
+            if (!gov.length) return null;
+            const covered = district.municipalities.filter((m) =>
+              gov.some((r) => r.county === m.county),
+            ).length;
+            return (
+              <div className="mb-2.5 rounded border border-hairline bg-white/[0.02] px-3 py-2">
+                <div className="text-[10px] uppercase tracking-[0.13em] text-ink-3">
+                  2025 governor — coverage
+                </div>
+                <p className="mt-1 text-[11px] leading-snug text-ink-2">
+                  {gov.length} of 6 counties in hand, {covered} of{' '}
+                  {district.meta.membership.municipalities} towns. Not a district result, and
+                  deliberately not added up into one — the four counties still missing are the
+                  district's most Democratic, so a partial sum would run to the right of the truth.
+                </p>
+              </div>
+            );
+          })()}
+
           <div className="space-y-3">
             {counties.returns.map((r) => {
               const towns = district.municipalities.filter((m) => m.county === r.county).length;

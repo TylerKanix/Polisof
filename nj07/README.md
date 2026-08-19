@@ -198,7 +198,13 @@ the resolution the document actually provides — the county, not the town:
 | | | |
 |---|---|---|
 | **2025 Governor** | Hunterdon | Ciattarelli 34,683 · Sherrill 31,663 — **R+4.6** |
+| **2025 Governor** | Warren | Ciattarelli 25,980 · Sherrill 19,199 — **R+15.0** |
 | **2022 U.S. House** | Hunterdon | Kean 32,678 · Malinowski 27,657 — **R+8.3** |
+
+Two of the district's six counties are in hand for 2025, covering 48 of its 94
+towns — and they are **not** added together. The four still missing are the
+district's most Democratic, so a partial sum would sit well to the right of the
+truth and would read like a result. The panel states the coverage instead.
 
 A county total cannot be drawn on a map of municipalities and is never summed
 into a district figure that is a sum of towns, so these sit in their own
@@ -212,8 +218,11 @@ Two files would close both gaps, and neither host answers this build's network:
 
 - `nj.gov/…/2022/2022-general-election-results-hor-07.pdf` — the whole 2022
   NJ-07 race, every municipality, in one file.
-- `nj.gov/…/2025/2025-official-general-results-governor-{county}.pdf` — six
-  files, one per county, and the 2025 map layer turns on.
+- `nj.gov/…/2025/2025-official-general-results-governor-{county}.pdf` — one per
+  county, and the 2025 map layer turns on. Note that the county *summary*
+  reports do not carry a municipal breakdown of the governor's race; the layer
+  needs municipal resolution, which is what these state per-office files and
+  Morris's own `2025-general-municipality-report-official` provide.
 
 ### `npm run audit`
 
